@@ -1,8 +1,8 @@
 import React from "react"
 import { Picker, Text, View } from "react-native"
 import { Actions } from "react-native-router-flux"
-import { Alert, Heading, Page, Checkbox, Dropdown, Button } from "react_native_template_1/src/components"
-import { ListGroup, ListGroupItem } from "react_native_template_1/src/components/listGroup"
+import { Alert, Heading, Page, Checkbox, Dropdown, Button } from "Neutronium/src/components"
+import { ListGroup, ListGroupItem } from "Neutronium/src/components/listGroup"
 
 import styles from "./styles"
 

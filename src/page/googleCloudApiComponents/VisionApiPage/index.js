@@ -1,8 +1,8 @@
 import React from "react"
 import { Text, View, Linking } from "react-native"
-import { Alert, Image, Button, Heading, Page, FlexBox } from "react_native_template_1/src/components"
+import { Alert, Image, Button, Heading, Page, FlexBox } from "Neutronium/src/components"
 import { ImagePicker, Permissions } from 'expo';
-import { getFaceDetection } from "react_native_template_1/src/api/gcpVisionApi"
+import { getFaceDetection } from "Neutronium/src/api/gcpVisionApi"
 
 import styles from "./styles"
 

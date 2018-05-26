@@ -1,9 +1,9 @@
 import React             from "react";
 import { Router, Scene } from "react-native-router-flux";
 import { Font }          from "expo";
-import ApiClientPage     from "react_native_template_1/src/page/ApiClientPage";
-import ColorListPage     from "react_native_template_1/src/page/ColorListPage";
-import TopPage           from "react_native_template_1/src/page/TopPage";
+import ApiClientPage     from "Neutronium/src/page/ApiClientPage";
+import ColorListPage     from "Neutronium/src/page/ColorListPage";
+import TopPage           from "Neutronium/src/page/TopPage";
 import {
   AlertComponentPage,
   AvatarComponentPage,
@@ -20,7 +20,7 @@ import {
   SwitchComponentPage,
   TextInputComponentPage,
   AnimatedComponentPage,
-} from "react_native_template_1/src/page/originalComponents";
+} from "Neutronium/src/page/originalComponents";
 
 import {
   CameraApiPage,
@@ -28,11 +28,11 @@ import {
   ImagePickerApiPage,
   NotificationApiPage,
   SpeechApiPage
-} from "react_native_template_1/src/page/expoApiComponents"
+} from "Neutronium/src/page/expoApiComponents"
 
 import {
   VisionApiPage
-} from "react_native_template_1/src/page/googleCloudApiComponents"
+} from "Neutronium/src/page/googleCloudApiComponents"
 
 export default class extends React.Component {
 

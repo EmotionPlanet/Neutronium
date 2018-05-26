@@ -1,4 +1,4 @@
-package com.react_native_template_1;
+package com.Neutronium;
 
 import android.app.Application;
 

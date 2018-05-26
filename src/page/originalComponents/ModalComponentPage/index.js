@@ -1,7 +1,7 @@
 import React from "react"
 import { View, Text, AppState } from "react-native"
 import { Actions } from "react-native-router-flux"
-import { Modal, Heading, Page, Button } from "react_native_template_1/src/components"
+import { Modal, Heading, Page, Button } from "Neutronium/src/components"
 
 import styles from "./styles"
 

@@ -1,9 +1,9 @@
 import React from "react"
 import { Text, View } from "react-native"
 import { Actions } from "react-native-router-flux"
-import { Page, Button, Heading, Avatar, FlexBox, Switch } from "react_native_template_1/src/components"
-import { ListGroup, ListGroupItem } from "react_native_template_1/src/components/listGroup"
-import avatarImage from "react_native_template_1/assets/images/avatar.jpg"
+import { Page, Button, Heading, Avatar, FlexBox, Switch } from "Neutronium/src/components"
+import { ListGroup, ListGroupItem } from "Neutronium/src/components/listGroup"
+import avatarImage from "Neutronium/assets/images/avatar.jpg"
 
 import styles from "./styles"
 

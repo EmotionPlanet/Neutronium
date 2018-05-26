@@ -1,7 +1,7 @@
 import React from "react"
 import { Animated, Text, View } from "react-native"
 import { Actions } from "react-native-router-flux"
-import { Slider, Heading, Page, FlexBox } from "react_native_template_1/src/components"
+import { Slider, Heading, Page, FlexBox } from "Neutronium/src/components"
 import { colors } from "config";
 
 import styles from "./styles"

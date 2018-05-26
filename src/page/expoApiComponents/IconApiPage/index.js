@@ -1,7 +1,7 @@
 import React from "react"
 import { Linking, Text, View } from "react-native"
 import { Actions } from "react-native-router-flux"
-import { Alert, Image, Button, Heading, Page, FlexBox } from "react_native_template_1/src/components"
+import { Alert, Image, Button, Heading, Page, FlexBox } from "Neutronium/src/components"
 import { ImagePicker, Permissions } from 'expo';
 import { Ionicons, Entypo, MaterialIcons } from '@expo/vector-icons';
 import { colors } from "config";

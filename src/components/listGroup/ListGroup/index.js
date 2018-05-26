@@ -1,6 +1,6 @@
 import React from "react";
 import { View } from "react-native";
-import { FlexBox } from "react_native_template_1/src/components"
+import { FlexBox } from "Neutronium/src/components"
 import { commons } from "./style"
 
 export default ({
