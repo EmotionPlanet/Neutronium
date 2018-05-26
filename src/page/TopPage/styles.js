@@ -17,5 +17,18 @@ export default {
   submit: {
     width: '80%',
     borderRadius: 30
+  },
+  titleImage: {
+    height: 60,
+    width: '100%',
+  },
+  image: {
+    height: 200,
+    width: '100%',
+    marginBottom: 10,
+    marginTop: 10
+  },
+  container: {
+    height: "80%",
   }
 };
