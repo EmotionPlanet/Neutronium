@@ -1,5 +1,5 @@
 import React from "react"
-import { Text, View, AsyncStorage, Dimensions } from "react-native"
+import {Text, View, AsyncStorage, Dimensions, AppState, Vibration} from "react-native"
 import { Actions } from "react-native-router-flux"
 import { Page, Button, Heading, Avatar, FlexBox, Switch, TextInput, Image } from "Neutronium/src/components"
 import { ListGroup, ListGroupItem } from "Neutronium/src/components/listGroup"
@@ -12,7 +12,8 @@ export default class extends React.Component {
   componentWillMount() {
     this.setState({
       name: "",
-      deviceWidth: Dimensions.get('window').width
+      deviceWidth: Dimensions.get('window').width,
+      modal1Visible: false,
     })
   }
 
@@ -47,7 +48,7 @@ export default class extends React.Component {
           justifyContent="space-around"
         >
           <View style={styles.view}>
-            <Image 
+            <Image
               source={avatarImage}
             />
           </View>
