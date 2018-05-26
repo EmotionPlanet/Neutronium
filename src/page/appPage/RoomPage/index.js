@@ -46,7 +46,7 @@ export default class extends React.Component {
           </ListGroup>
           <Button
             type="primary"
-            onPress={() => Actions.gamescreenPage()}
+            onPress={() => Actions.gameScreenPage()}
             size="large"
           >
             Ready
