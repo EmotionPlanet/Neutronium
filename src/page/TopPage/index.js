@@ -17,22 +17,26 @@ export default class extends React.Component {
 
   render() {
     return (
-      <Page> 
+      <FlexBox
+        flexDirection="column"
+        alignItems="center"
+        justifyContent="space-between"
+      > 
         <FlexBox
           flexDirection="column"
           alignItems="center"
-          justifyContent="space-around"
+          justifyContent="space-between"
           style={styles.host}
         >
           <View>
-            <Heading size="large" align="center" style={styles.title} >No Ball!</Heading>
+            <Heading size="xlarge" align="center" style={styles.title} >No Ball!</Heading>
           </View>
-          <View>
+          <View style={styles.container}>
             <TextInput type="primary" style={styles.input} placeholder="ユーザー名"/>
             <Button type="primary" size="large" style={styles.submit} onPress={() => undefined}>START</Button>     
           </View>
         </FlexBox>
-      </Page>
+      </FlexBox>
     );
   }
 }

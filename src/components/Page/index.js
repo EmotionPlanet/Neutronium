@@ -8,10 +8,10 @@ export default ({
   ...props
 }) =>
   <ScrollView
-    style={{
-      ...commons.host,
-      ...style
-    }}
+    style={[
+      commons.host,
+      style
+    ]}
     {...props}
   >
     {children}
