@@ -1,27 +1,21 @@
 import { colors } from "config";
 
-export default ({
-  host: {
-    margin: 50,
-    width: "100%",
+export default {
+  host: {},
+  view: {
+    width: '75%',
   },
-  container: {
-    bottom: "40%",
-    width: "75%",
-  },
-  title: {
-    marginTop: 30,
+  box: {
+    width: '75%',
   },
   input: {
-    width: "100%",
-    marginBottom: 25,
-    height: 50,
+    marginBottom: 40,
+  },
+  title: {
+    width: '100%',
   },
   submit: {
-    width: "100%",
-    marginLeft: 0,
-    height: 50,
-    borderWidth: 1,
-    borderColor: "#f8f9fa"
-  } 
-}); 
+    width: '80%',
+    borderRadius: 30
+  }
+};

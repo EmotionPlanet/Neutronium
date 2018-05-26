@@ -11,6 +11,8 @@ export default class extends React.Component {
 
   componentWillMount() {
     this.setState({
+      subscriber: undefined,
+      ref: undefined,
       room: undefined
     })
   }
@@ -18,40 +20,68 @@ export default class extends React.Component {
   componentDidMount() {
     (async() => {
       const {
-        roomName
+        roomName,
+        myId,
+        ...props
       } = this.props
 
-      await firebase.database().ref('rooms/' + roomName ).on('value', snapshot => {
-        const val = snapshot.val()
-        
-        this.setState({
-          room: {
-            ...val,
-            users: Object.entries(val.users).map(([i, v]) => ({
-              id: i,
-              ...v,
-            }))
-          }
-        })
-      });
+      console.log(props)
+
+      this.setState(
+        {
+          subscriber: async snapshot => {
+            const val = snapshot.val()
+            
+            const room = {
+              ...val,
+              users: Object.entries(val.users).map(([i, v]) => ({
+                id: i,
+                ...v,
+              }))
+            }
+
+            if (room.users.length >= 2 && room.users.every(x => x.is_ready)) {
+              await firebase.database().ref('rooms/' + roomName ).update({is_start: true})
+              Actions.gameScreenPage()
+            }
+
+            this.setState({
+              room
+            })
+          },
+          ref: firebase.database().ref('rooms/' + roomName )
+
+        },
+        async () => {
+          await this.state.ref.on('value', this.state.subscriber);
+        }
+      )
 
     })()
   }
 
   componentWillUnmount() {
     (async() => {
-      
       const {
-        roomName
+        roomName,
+        myId,
       } = this.props
 
-      await firebase.database().ref('rooms/' + roomName ).off()
-    })
+      this.state.ref.off('value', this.state.subscriber)
+      
+      await firebase
+        .database()
+        .ref('rooms/' + roomName + '/users/' + myId)
+        .remove()
+    })()
   }
 
   render() {
+    const {
+      roomName,
+      myId,
+    } = this.props
 
-    console.log(this.state.room)
     return (
       <Page
         style={styles.host}
@@ -80,14 +110,19 @@ export default class extends React.Component {
             {this.state.room && this.state.room.users.map(user => 
               <ListGroupItem
                 key={user.id}
+                badgeText={user.is_ready ? "準備完了!" : "準備中"}
               >
                 {user.name}
               </ListGroupItem>
             )}
           </ListGroup>
           <Button
-            type="primary"
-            onPress={() => Actions.gamescreenPage()}
+            type={(this.state.room && this.state.room.users.find(x => x.id == myId) || {} ).is_ready ? "primary" : "success"}
+            onPress={async () => {
+              await firebase.database().ref('rooms/' + roomName + "/users/" + myId ).update({
+                is_ready: !( (this.state.room && this.state.room.users.find(x => x.id == myId) || {} ).is_ready )
+              })
+            }}
             size="large"
           >
             Ready

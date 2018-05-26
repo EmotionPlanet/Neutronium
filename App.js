@@ -38,11 +38,12 @@ import {
 } from "Neutronium/src/page/googleCloudApiComponents"
 
 import {
-  TypePage,
   MakeRoomPage,
   RoomPage,
   RulePage,
-  GameScreenPage
+  GameScreenPage,
+  GameSetPage,
+  ResultPage
 } from "Neutronium/src/page/appPage"
 
 import * as firebase from 'firebase';
@@ -138,11 +139,6 @@ export default class extends React.Component {
 
           {/* appPage */}
           <Scene 
-            key="typePage"
-            component={TypePage}
-            title="type-page"
-          />
-          <Scene 
             key="makeroomPage"
             component={MakeRoomPage}
             title="make-room-page"
@@ -158,9 +154,19 @@ export default class extends React.Component {
             title="rule-page"
           />
           <Scene
-            key="gamescreenPage"
+            key="gameScreenPage"
             component={GameScreenPage}
             title="game-screen-page"
+          />
+          <Scene
+            key="gameSetPage"
+            component={GameSetPage}
+            title="game-set-page"
+          />
+          <Scene
+            key="resultPage"
+            component={ResultPage}
+            title="result-page"
           />
         </Scene>
         

@@ -1,5 +1,5 @@
 import React from "react"
-import { Text, View, AlertIOS, AsyncStorage } from "react-native"
+import {Text, View, AlertIOS, AsyncStorage, Dimensions} from "react-native"
 import { Actions } from "react-native-router-flux"
 import { Image, Button, Page, FlexBox, TextInput } from "Neutronium/src/components"
 import * as firebase from 'firebase';
@@ -9,17 +9,23 @@ import styles from "./styles"
 export default class extends React.Component {
   componentWillMount() {
     this.setState({
-      roomName: ""
+      roomName: "",
+      deviceWidth: Dimensions.get('window').width
     })
   }
 
   render() {
+    const { deviceWidth } = this.state;
+    
     return (
       <FlexBox
         alignItems="center"
         justifyContent="center"
         flexDirection="column"
-        style={styles.host}
+        style={{
+          width: deviceWidth,
+          ...styles.host
+        }}
         {...this.props}
       >
         <FlexBox
@@ -62,12 +68,15 @@ export default class extends React.Component {
               if (room == null) {
                 alert("ルームが存在しません！");
 
+              } else if (room.is_start) {
+                alert("ゲーム中です。お待ちください。")
               } else {
+                const name = await AsyncStorage.getItem("name");
 
-                await firebase.database().ref('rooms/' + this.state.roomName + "/users" ).push({
+                const x = await firebase.database().ref('rooms/' + this.state.roomName + "/users" ).push({
                   name: name
                 })
-                Actions.roomPage({roomName: this.state.roomName})
+                Actions.roomPage({roomName: this.state.roomName, myId: x.key})
               }
             }}
           >
@@ -79,17 +88,15 @@ export default class extends React.Component {
             style={styles.submit}
             onPress={() => {
               AlertIOS.prompt(
-                'ルーム名',
+                "ルーム名",
                 null,
                 async newRoomName => {
                   const name = await AsyncStorage.getItem("name");
-                  const room = (
-                    await firebase.database().ref('rooms/' + newRoomName + "/users" ).push({
-                      name: name
-                    })
-                  );
+                  const room = await firebase.database().ref('rooms/' + newRoomName + "/users" ).push({
+                    name: name
+                  })
 
-                  Actions.roomPage({roomName: newRoomName})
+                  Actions.roomPage({roomName: newRoomName, myId: room.key})
                 }
               );
             }}
