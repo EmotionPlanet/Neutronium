@@ -9,13 +9,15 @@ import styles from "./styles"
 
 export default class extends React.Component {
 
-  state = {
-    accelerometerData: {},
+  componentWillMount() {
+    this.setState({
+      count: 0,
+      accelerometerData: {},
+    })
   }
 
-  componentWillMount() {}
-
   componentDidMount() {
+    Accelerometer.setUpdateInterval(0.1);
     if (this._subscription) {
       this._unsubscribe();
     } else {
@@ -35,7 +37,17 @@ export default class extends React.Component {
 
   _subscribe = () => {
     this._subscription = Accelerometer.addListener(accelerometerData => {
-      this.setState({ accelerometerData });
+      const {x:prevX, y:prevY, z:prevZ} = this.state.accelerometerData;
+      const {x, y, z} = accelerometerData;
+      
+      let count = this.state.count + 1;
+
+      this.setState({
+        prevAccelerometerData: this.state.accelerometerData,
+        accelerometerData,
+        count,
+      });
+
     });
   }
 
@@ -45,7 +57,6 @@ export default class extends React.Component {
   }
 
   render() {
-    let { x, y, z } = this.state.accelerometerData;
 
     return (
       <Page
@@ -55,12 +66,14 @@ export default class extends React.Component {
         <Heading>Sensor States</Heading>
         <View style={styles.sensor}>
           <Text>Accelerometer:</Text>
-          <Text>x: {round(x)} y: {round(y)} z: {round(z)}</Text>
+          <Text>x: {round(this.state.prevAccelerometerData.x)} y: {round(this.state.prevAccelerometerData.y)} z: {round(this.state.prevAccelerometerData.z)}</Text>
           <Text>Initial Accelerometer:</Text>
           <Text>
-            {round(x)}:{round(y)}:{round(z)}
+            x: {round(this.state.accelerometerData.x)} y: {round(this.state.accelerometerData.y)} z: {round(this.state.accelerometerData.z)}
           </Text>
           <Text>Distance:</Text>
+          <Text>Count</Text>
+          <Text>{this.state.count}</Text>
         </View>
       </Page>
     );
