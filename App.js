@@ -36,9 +36,9 @@ import {
 } from "Neutronium/src/page/googleCloudApiComponents"
 
 import {
-  SelectPage,
   TypePage,
-  MakeRoomPage
+  MakeRoomPage,
+  RoomPage
 } from "Neutronium/src/page/appPage"
 
 import * as firebase from 'firebase';
@@ -123,11 +123,6 @@ export default class extends React.Component {
           />
 
           {/* appPage */}
-          <Scene
-            key="selectPage"
-            component={SelectPage}
-            title="select-page"
-          />
           <Scene 
             key="typePage"
             component={TypePage}
@@ -137,6 +132,11 @@ export default class extends React.Component {
             key="makeroomPage"
             component={MakeRoomPage}
             title="make-room-page"
+          />
+          <Scene
+            key="roomPage"
+            component={RoomPage}
+            title="room-page"
           />
         </Scene>
         
