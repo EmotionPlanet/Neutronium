@@ -93,6 +93,14 @@ export default class extends React.Component {
         <View style={styles.slider}>
           <Text>スライダー</Text>
         </View>
+        <Button
+          size="small"
+          type="info"
+          onPress={() => Actions.rulePage()}
+          outline
+          >
+          RULE
+          </Button>
         <View
           style={styles.timeWrap}
         >
@@ -116,15 +124,6 @@ export default class extends React.Component {
           style={styles.body}
         >
           <Heading size="xsmall" align="center">member</Heading>
-          {/*<Button*/}
-          {/*size="small"*/}
-          {/*type="info"*/}
-          {/*onPress={() => Actions.rulePage()}*/}
-          {/*outline*/}
-          {/*style={styles.info}*/}
-          {/*>*/}
-          {/*?*/}
-          {/*</Button>*/}
           <ListGroup style={styles.list}>
             {this.state.room && this.state.room.users.map(user =>
               <ListGroupItem

@@ -17,6 +17,5 @@ export default {
   },
   submit: {
     width: '80%',
-    borderRadius: 30
   }
 };

@@ -16,7 +16,6 @@ export default {
   },
   submit: {
     width: '80%',
-    borderRadius: 30
   },
   titleImage: {
     height: 60,
@@ -30,5 +29,12 @@ export default {
   },
   container: {
     height: "80%",
-  }
+  },
+  info: {
+    position: 'relative',
+    left: 40,
+    borderRadius: 30,
+    width: 30,
+    height: 30,
+  },
 };
