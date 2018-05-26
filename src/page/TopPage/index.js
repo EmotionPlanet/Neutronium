@@ -33,7 +33,7 @@ export default class extends React.Component {
           </View>
           <View style={styles.container}>
             <TextInput type="primary" style={styles.input} placeholder="ユーザー名"/>
-            <Button type="primary" size="large" style={styles.submit} onPress={() => Actions.selectPage()}>START</Button>     
+            <Button type="primary" size="large" style={styles.submit} onPress={() => Actions.makeroomPage()}>START</Button>     
           </View>
         </FlexBox>
       </FlexBox>
