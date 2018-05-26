@@ -3,16 +3,75 @@ import { Text, View } from "react-native"
 import { Actions } from "react-native-router-flux"
 import { Page, FlexBox, Heading, Button } from "Neutronium/src/components"
 import { ListGroup, ListGroupItem } from "Neutronium/src/components/listGroup"
+import * as firebase from 'firebase';
 
 import styles from "./styles"
 
 export default class extends React.Component {
 
+  componentWillMount() {
+    this.setState({
+      subscriber: undefined,
+      ref: undefined,
+      room: undefined
+    })
+  }
+
   componentDidMount() {
-    console.log(this.props)
+    (async() => {
+      const {
+        roomName,
+        myId,
+      } = this.props
+
+      this.setState(
+        {
+          subscriber: snapshot => {
+            const val = snapshot.val()
+            
+            this.setState({
+              room: {
+                ...val,
+                users: Object.entries(val.users).map(([i, v]) => ({
+                  id: i,
+                  ...v,
+                }))
+              },
+            })
+          },
+          ref: firebase.database().ref('rooms/' + roomName )
+
+        },
+        async () => {
+          await this.state.ref.on('value', this.state.subscriber);
+        }
+      )
+
+    })()
+  }
+
+  componentWillUnmount() {
+    (async() => {
+      const {
+        roomName,
+        myId,
+      } = this.props
+
+      this.state.ref.off('value', this.state.subscriber)
+      
+      await firebase
+        .database()
+        .ref('rooms/' + roomName + '/users/' + myId)
+        .remove()
+    })()
   }
 
   render() {
+    const {
+      roomName,
+      myId,
+    } = this.props
+
     return (
       <Page
         style={styles.host}
@@ -38,15 +97,22 @@ export default class extends React.Component {
             </Button>
           </FlexBox>
           <ListGroup>
-            <ListGroupItem>member 1</ListGroupItem>
-            <ListGroupItem>member 2</ListGroupItem>
-            <ListGroupItem>member 3</ListGroupItem>
-            <ListGroupItem>member 4</ListGroupItem>
-            <ListGroupItem>member 5</ListGroupItem>
+            {this.state.room && this.state.room.users.map(user => 
+              <ListGroupItem
+                key={user.id}
+                badgeText={user.is_ready ? "準備完了!" : "準備中"}
+              >
+                {user.name}
+              </ListGroupItem>
+            )}
           </ListGroup>
           <Button
-            type="primary"
-            onPress={() => Actions.gameScreenPage()}
+            type={(this.state.room && this.state.room.users.find(x => x.id == myId) || {} ).is_ready ? "primary" : "success"}
+            onPress={async () => {
+              await firebase.database().ref('rooms/' + roomName + "/users/" + myId ).update({
+                is_ready: !( (this.state.room && this.state.room.users.find(x => x.id == myId) || {} ).is_ready )
+              })
+            }}
             size="large"
           >
             Ready
