@@ -54,6 +54,7 @@ export default class MagnetometerSensor extends React.Component {
 
   render() {
     Magnetometer.setUpdateInterval(1000);
+    const theta = calculationDistance(this.state.prevMagnetometerData, this.state.magnetometerData);
 
     return (
       <Page
@@ -68,8 +69,8 @@ export default class MagnetometerSensor extends React.Component {
           <Text>
             x: {round(this.state.magnetometerData.x)} y: {round(this.state.magnetometerData.y)} z: {round(this.state.magnetometerData.z)}
           </Text>
-          {/* <Text>Distance:</Text>
-          <Text>{distanse}</Text> */}
+          <Text>Theta:</Text>
+          <Text>{theta}</Text>
           <Text>Count</Text>
           <Text>{this.state.count}</Text>
         </View>
@@ -84,4 +85,15 @@ function round(n) {
   }
 
   return Math.floor(n * 100) / 100;
+}
+
+function calculationDistance(prevData, nowData) {
+  const x = Math.pow(nowData.x, 2);
+  const y = Math.pow(nowData.y, 2);
+  const z = Math.pow(nowData.z, 2);
+
+  const radius = Math.sqrt(x + y + z);
+  const theta = Math.acos(nowData.z / radius);
+  const phi = Math.atan2(nowData.y, nowData.x);
+  return phi;
 }
