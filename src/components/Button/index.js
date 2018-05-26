@@ -29,24 +29,24 @@ export default class extends React.Component {
 
     return (
       <Component
-        style={{
-          ...commons.button,
-          ...types.button[type],
-          ...sizes.button[size],
-          ...(
+        style={[
+          commons.button,
+          types.button[type],
+          sizes.button[size],
+          (
             disabled ? commons.disabledButton : {}
           ),
-          ...(
+          (
             outline ? {backgroundColor: "transparent"} : {}
           ),
-          ...(
+          (
             Platform.OS == "ios" && japanese ? {
               paddingBottom: sizes.button[size].paddingBottom - 4,
               paddingTop   : sizes.button[size].paddingTop + 4
             }                    : {}
           ),
-          ...style
-        }}
+          style
+        ]}
         underlayColor={!disabled && types.underlayColor[type]}
         onShowUnderlay={() => this.setState({isShowUnderlay: true})}
         onHideUnderlay={() => this.setState({isShowUnderlay: false})}
