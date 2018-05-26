@@ -27,7 +27,7 @@ export default class extends React.Component {
             <Button
               size="small" 
               type="info" 
-              onPress={() => undefined} 
+              onPress={() => Actions.rulePage()} 
               outline
             >
               ?
