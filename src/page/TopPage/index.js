@@ -1,7 +1,7 @@
 import React from "react"
 import { Text, View } from "react-native"
 import { Actions } from "react-native-router-flux"
-import { Page, Button, Heading, Avatar, FlexBox, Switch } from "Neutronium/src/components"
+import { Page, Button, Heading, Avatar, FlexBox, Switch, TextInput } from "Neutronium/src/components"
 import { ListGroup, ListGroupItem } from "Neutronium/src/components/listGroup"
 import avatarImage from "Neutronium/assets/images/avatar.jpg"
 
@@ -25,60 +25,11 @@ export default class extends React.Component {
           style={styles.host}
         >
           <View>
-            <Avatar
-              size="xlarge"
-              source={avatarImage}
-            />
-            <Heading size="large">template 1</Heading>
+            <Heading size="large" align="center" style={styles.title} >No Ball!</Heading>
           </View>
           <View>
-            <Heading size="small" style={{alignSelf: "flex-start"}}>Original Components</Heading>
-            <ListGroup
-              style={{
-                width: 300
-              }}
-            >
-              <ListGroupItem onPress={() => Actions.alertComponentPage()}>Alert</ListGroupItem>
-              <ListGroupItem onPress={() => Actions.avatarComponentPage()}>Avatar</ListGroupItem>
-              <ListGroupItem onPress={() => Actions.badgeComponentPage()}>Badge</ListGroupItem>
-              <ListGroupItem onPress={() => Actions.buttonComponentPage()}>Button</ListGroupItem>
-              <ListGroupItem onPress={() => Actions.buttonGroupComponentPage()}>ButtonGroup</ListGroupItem>
-              <ListGroupItem onPress={() => Actions.checkboxComponentPage()}>Checkbox</ListGroupItem>
-              <ListGroupItem onPress={() => Actions.dropdownComponentPage()}>Dropdown</ListGroupItem>
-              <ListGroupItem onPress={() => Actions.expansionPanelComponentPage()}>ExpansionPanel</ListGroupItem>
-              <ListGroupItem onPress={() => Actions.headingComponentPage()}>Heading</ListGroupItem>
-              <ListGroupItem onPress={() => Actions.listGroupComponentPage()}>ListGroup</ListGroupItem>
-              <ListGroupItem onPress={() => Actions.modalComponentPage()}>Modal</ListGroupItem>
-              <ListGroupItem onPress={() => Actions.sliderComponentPage()}>Slider</ListGroupItem>
-              <ListGroupItem onPress={() => Actions.switchComponentPage()}>Switch</ListGroupItem>
-              <ListGroupItem onPress={() => Actions.textInputComponentPage()}>TextInput</ListGroupItem>
-              <ListGroupItem onPress={() => Actions.animatedComponentPage()}>Animated</ListGroupItem>
-            </ListGroup>
-            <View>
-              <Heading size="small" style={{alignSelf: "flex-start"}}>utility</Heading>
-              <Button onPress={() => Actions.colorListPage()}>Colors</Button>
-              <Button onPress={() => Actions.apiClientPage()}>RESTAPI Client</Button>
-            </View>
-            <Heading size="small" style={{alignSelf: "flex-start"}}>Expo Api</Heading>
-            <ListGroup
-              style={{
-                width: 300
-              }}
-            >
-              <ListGroupItem onPress={() => Actions.cameraApiPage()}>Camera</ListGroupItem>
-              <ListGroupItem onPress={() => Actions.iconApiPage()}>Icon</ListGroupItem>
-              <ListGroupItem onPress={() => Actions.imagePickerApiPage()}>Image Picker</ListGroupItem>
-              <ListGroupItem onPress={() => Actions.notificationApiPage()}>Notification</ListGroupItem>
-              <ListGroupItem onPress={() => Actions.speechApiPage()}>Speech</ListGroupItem>
-            </ListGroup>
-            <Heading size="small" style={{alignSelf: "flex-start"}}>Google Cloud Api</Heading>
-            <ListGroup
-              style={{
-                width: 300
-              }}
-            >
-              <ListGroupItem onPress={() => Actions.googleCloudVisionApiPage()}>Vision Api</ListGroupItem>
-            </ListGroup>
+            <TextInput type="primary" style={styles.input} placeholder="ユーザー名"/>
+            <Button type="primary" size="large" style={styles.submit} onPress={() => undefined}>START</Button>     
           </View>
         </FlexBox>
       </Page>
