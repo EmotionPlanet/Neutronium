@@ -1,8 +1,8 @@
 import React from "react"
-import * as postApi from "react_native_template_1/src/api/jsonplaceholderApi/posts"
+import * as postApi from "Neutronium/src/api/jsonplaceholderApi/posts"
 import { Alert, Text, View, Linking } from "react-native"
-import { Alert as AlertComponent, Button, Heading, Page } from "react_native_template_1/src/components"
-import { ListGroup, ListGroupItem } from "react_native_template_1/src/components/listGroup"
+import { Alert as AlertComponent, Button, Heading, Page } from "Neutronium/src/components"
+import { ListGroup, ListGroupItem } from "Neutronium/src/components/listGroup"
 import { colors } from "config"
 
 import styles from "./styles"

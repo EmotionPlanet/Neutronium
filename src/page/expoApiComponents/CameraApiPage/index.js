@@ -1,7 +1,7 @@
 import React from "react"
 import { Text, View, Dimensions } from "react-native"
 import { Actions } from "react-native-router-flux"
-import { Image, Button, Alert, Heading, Page, FlexBox } from "react_native_template_1/src/components"
+import { Image, Button, Alert, Heading, Page, FlexBox } from "Neutronium/src/components"
 import { ImagePicker } from 'expo'
 
 import styles from "./styles"

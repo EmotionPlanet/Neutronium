@@ -1,7 +1,7 @@
 import React from "react"
 import { Text, View } from "react-native"
 import { Actions } from "react-native-router-flux"
-import { Slider, FlexBox, TextInput, Button, Heading, Page } from "react_native_template_1/src/components"
+import { Slider, FlexBox, TextInput, Button, Heading, Page } from "Neutronium/src/components"
 import { ImagePicker, Permissions, Speech } from 'expo';
 
 import styles from "./styles"

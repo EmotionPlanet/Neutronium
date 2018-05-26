@@ -1,7 +1,7 @@
 import React from "react"
 import { Text, View } from "react-native"
 import { Actions } from "react-native-router-flux"
-import { Switch, Page, Heading, FlexBox } from "react_native_template_1/src/components"
+import { Switch, Page, Heading, FlexBox } from "Neutronium/src/components"
 
 import styles from "./styles"
 

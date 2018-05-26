@@ -1,6 +1,6 @@
 import React from "react"
 import { Text, View, Image, Animated, ScrollView } from "react-native"
-import { Heading, Page, AnimatedSpin, AnimatedFade, AnimatedMove, FlexBox } from "react_native_template_1/src/components"
+import { Heading, Page, AnimatedSpin, AnimatedFade, AnimatedMove, FlexBox } from "Neutronium/src/components"
 
 import styles from "./styles"
 
