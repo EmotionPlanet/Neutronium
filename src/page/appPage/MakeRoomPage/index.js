@@ -1,11 +1,17 @@
 import React from "react"
-import { Text, View } from "react-native"
+import { Text, View, AlertIOS, AsyncStorage } from "react-native"
 import { Actions } from "react-native-router-flux"
 import { Avatar, Button, Page, FlexBox, TextInput } from "Neutronium/src/components"
+import * as firebase from 'firebase';
 
 import styles from "./styles"
 
 export default class extends React.Component {
+  componentWillMount() {
+    this.setState({
+      roomName: ""
+    })
+  }
 
   render() {
     return (
@@ -27,8 +33,52 @@ export default class extends React.Component {
         </FlexBox>
 
         <View>
-          <TextInput type="primary" />
-          <Button type="primary" size="large" style={styles.submit} onPress={() => Actions.roomPage()}>OK</Button>
+          <TextInput
+            type="primary"
+            onChangeText={roomName => this.setState({roomName})}
+          />
+          <Button
+            type="primary"
+            size="large"
+            style={styles.submit}
+            onPress={async () => {
+              const room = (
+                await firebase.database().ref('rooms/' + this.state.roomName).once('value')
+              ).val()
+
+              if (room == null) {
+                alert("ルームが存在しません！");
+                return
+              } else {
+                Actions.roomPage({roomName: this.state.roomName})
+              }
+            }}
+          >
+            OK
+          </Button>
+          <Button
+            type="primary"
+            size="large"
+            style={styles.submit}
+            onPress={() => {
+              AlertIOS.prompt(
+                'ルーム名',
+                null,
+                async newRoomName => {
+                  const name = await AsyncStorage.getItem("name");
+                  const room = (
+                    await firebase.database().ref('rooms/' + newRoomName + "/users" ).push({
+                      user_name: name
+                    })
+                  )
+
+                  Actions.roomPage({roomName: newRoomName})
+                }
+              );
+            }}
+          >
+            Stab
+          </Button>
         </View>
       </Page>
     );

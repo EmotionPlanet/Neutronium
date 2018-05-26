@@ -8,6 +8,10 @@ import styles from "./styles"
 
 export default class extends React.Component {
 
+  componentDidMount() {
+    console.log(this.props)
+  }
+
   render() {
     return (
       <Page

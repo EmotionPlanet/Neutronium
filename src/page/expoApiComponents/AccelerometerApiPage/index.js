@@ -12,12 +12,12 @@ export default class extends React.Component {
   componentWillMount() {
     this.setState({
       count: 0,
+      prevAccelerometerData: {},
       accelerometerData: {},
     })
   }
 
   componentDidMount() {
-    Accelerometer.setUpdateInterval(0.1);
     if (this._subscription) {
       this._unsubscribe();
     } else {
@@ -57,7 +57,12 @@ export default class extends React.Component {
   }
 
   render() {
-
+    Accelerometer.setUpdateInterval(300);
+    const distanse = calculationDistance(this.state.prevAccelerometerData, this.state.accelerometerData);
+    distanse > 1.5
+      ?isDistanse = true
+      :isDistanse = false;
+    
     return (
       <Page
         style={styles.host}
@@ -72,6 +77,7 @@ export default class extends React.Component {
             x: {round(this.state.accelerometerData.x)} y: {round(this.state.accelerometerData.y)} z: {round(this.state.accelerometerData.z)}
           </Text>
           <Text>Distance:</Text>
+          <Text>{distanse}</Text>
           <Text>Count</Text>
           <Text>{this.state.count}</Text>
         </View>
@@ -86,4 +92,11 @@ function round(n) {
   }
 
   return Math.floor(n * 100) / 100;
+}
+
+function calculationDistance(prevData, nowData) {
+  const x = Math.pow(prevData.x - nowData.x, 2);
+  const y = Math.pow(prevData.y - nowData.y, 2);
+  const z = Math.pow(prevData.z - nowData.z, 2);
+  return Math.sqrt(x+y+z);
 }
