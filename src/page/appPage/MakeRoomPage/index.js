@@ -47,13 +47,15 @@ export default class extends React.Component {
               ).val()
 
               if (room == null) {
-                alert("部屋が存在しません！");
+                alert("ルームが存在しません！");
                 return
+              } else {
+                Actions.roomPage(room)
               }
-              
-              Actions.roomPage(room)
             }}
-          >OK</Button>
+          >
+            OK
+          </Button>
         </View>
       </Page>
     );
