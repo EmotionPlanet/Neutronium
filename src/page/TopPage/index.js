@@ -1,7 +1,7 @@
 import React from "react"
 import { Text, View, AsyncStorage, Dimensions, AppState, ImageBackground } from "react-native"
 import { Actions } from "react-native-router-flux"
-import { Page, Button, Heading, Avatar, FlexBox, Switch, TextInput, Modal, Image } from "Neutronium/src/components"
+import { Page, Button, Heading, Avatar, FlexBox, Switch, TextInput, Image } from "Neutronium/src/components"
 import { ListGroup, ListGroupItem } from "Neutronium/src/components/listGroup"
 import background from "Neutronium/assets/images/background.png"
 import { AccelerometerApiPage } from "Neutronium/src/page/expoApiComponents"
@@ -15,8 +15,6 @@ export default class extends React.Component {
       deviceWidth: Dimensions.get('window').width,
       modal1Visible: false,
     })
-
-    AppState.addEventListener('change', this._handleAppStateChange);
   }
 
   componentDidMount() {
@@ -49,61 +47,39 @@ export default class extends React.Component {
           }}
           {...this.props}
         >
-          <FlexBox
-            alignItems="center"
-            justifyContent="space-around"
-          >
-            <View style={styles.view}>
-              <Heading size="xlarge" align="center" style={styles.title} >No Ball!</Heading>
-              <Button
-                onPress={() => this.setState({modal1Visible: true})}
-              >
-               ?
-              </Button>
-            </View>
-          </FlexBox>
-          <FlexBox
-            flexDirection="column"
-            alignItems="center"
-            justifyContent="center"
-            style={styles.box}
-          >
-            <TextInput
-              type="primary"
-              defaultValue={this.state.name}
-              style={styles.input}
-              placeholder="ユーザー名"
-              onChangeText={name => this.setState({name})}
-            />
-            <Button
-              type="primary"
-              size="large"
-              style={styles.submit}
-              disabled={!(this.state.name.length > 1)}
-              onPress={async () => {
-                if (this.state.name.length > 1) {
-                  await AsyncStorage.setItem("name", this.state.name)
-                  Actions.makeroomPage()
-                }
-              }}
-            >
-              START
-            </Button>
-          </FlexBox>
-          <Modal
-            visible={this.state.modal1Visible}
-            type="none"
-          >
+          <View style={styles.view}>
             <Image
-                style={styles.titleImage}
-                uri="http://placehold.jp/300x300.png?text=small"
+              source={avatarImage}
             />
-            <Image
-                style={styles.image}
-                uri="http://placehold.jp/300x300.png?text=xlarge"
-            />
-            <Button onPress={() => this.setState({modal1Visible: false})}>Back</Button>
-          </Modal>
+          </View>
+        </FlexBox>
+        <FlexBox
+          flexDirection="column"
+          alignItems="center"
+          justifyContent="center"
+          style={styles.box}
+        >
+          <TextInput
+            type="primary"
+            defaultValue={this.state.name}
+            style={styles.input}
+            placeholder="ユーザー名"
+            onChangeText={name => this.setState({name})}
+          />
+          <Button
+            type="primary"
+            size="large"
+            style={styles.submit}
+            disabled={!(this.state.name.length > 1)}
+            onPress={async () => {
+              if (this.state.name.length > 1) {
+                await AsyncStorage.setItem("name", this.state.name)
+                Actions.makeroomPage()
+              }
+            }}
+          >
+            OK
+          </Button>
         </FlexBox>
       </ImageBackground>
     );

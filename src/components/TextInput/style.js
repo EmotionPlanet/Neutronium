@@ -7,8 +7,8 @@ export const commons = {
     paddingLeft: 20,
     paddingRight: 20,
     marginBottom: 16,
-    borderRadius: 4,
-    borderWidth: 1,
+    borderRadius: 8,
+    borderWidth: 6,
     alignSelf: "stretch"
   }
 }
@@ -16,7 +16,7 @@ export const commons = {
 export const types = {
   host: {
     primary: {
-      borderColor: colors.primary[200],
+      borderColor: "#000",
     },
     secondary: {
       borderColor: colors.secondary[200],

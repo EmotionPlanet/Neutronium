@@ -2,8 +2,8 @@ import { colors, fonts } from "config";
 
 export const commons = {
   button: {
-    borderWidth: 1,
-    borderRadius: 4,
+    borderWidth: 6,
+    borderRadius: 8,
     marginLeft: 4,
     marginRight: 4,
     marginTop: 2,
@@ -57,8 +57,8 @@ export const sizes = {
 export const types = {
   button: {
     primary: {
-      backgroundColor: colors.primary[300],
-      borderColor: colors.primary[300],
+      backgroundColor: "#fff500",
+      borderColor: "#ff0000",
     },
     secondary: {
       backgroundColor: colors.secondary[300],
@@ -91,7 +91,7 @@ export const types = {
   },
   text: {
     primary: {
-      color: "#fff"
+      color: "#ff0000"
     },
     secondary: {
       color: "#fff"

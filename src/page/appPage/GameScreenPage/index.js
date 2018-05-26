@@ -1,5 +1,5 @@
 import React from "react"
-import { Text, View, ImageBackground } from "react-native"
+import { Text, View, ImageBackground, Vibration } from "react-native"
 import { Actions } from "react-native-router-flux"
 import { Page, FlexBox, Heading, Button, Image } from "Neutronium/src/components"
 import background from "Neutronium/assets/images/background.png"
@@ -13,7 +13,11 @@ export default class extends React.Component {
     this.setState({
       subscriber: undefined,
       ref: undefined,
-      room: undefined
+      room: undefined,
+      vibPattern1 : [10, 10, 10],
+      vibPattern2 : [100, 100, 100],
+      vibPattern3 : [500, 500, 500],
+      vibPattern4 : [1000, 1000, 1000],
     })
   }
 
@@ -32,12 +36,29 @@ export default class extends React.Component {
 
             const room = {
               ...val,
-              users: Object.entries(val.users).map(([i, v]) => ({
+              users: Object.entries(val.users || {}).map(([i, v]) => ({
                 id: i,
                 ...v,
               }))
             }
-            
+
+            {/* ゲームゾーン */}
+            if (room.ball_holding_user == myId) {
+              this._vibration();
+
+              const winAction = async () => {
+
+                const userIdList = room.users.map(x => x.id)
+                  .filter(x => x != myId)
+
+                await firebase.database().ref('rooms/' + roomName  ).update({
+                  ball_holding_user: userIdList[Math.floor(Math.random() * userIdList.length)].id
+                })
+              }
+            }
+
+            {/* ゲームゾーン */}
+
             this.setState({
               room
             })
@@ -69,6 +90,9 @@ export default class extends React.Component {
     })()
   }
 
+  _vibration(){
+    Vibration.vibrate(this.state.vibPattern4, true);
+  }
 
   render() {
     return (

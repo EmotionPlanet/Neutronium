@@ -88,6 +88,32 @@ export default class extends React.Component {
         source={background}
         style={{width: "100%", height: "100%"}}
       >
+        <View style={styles.slider}>
+          <Text>スライダー</Text>
+        </View>
+        <Button
+          size="small"
+          type="info"
+          onPress={() => Actions.rulePage()}
+          outline
+          >
+          RULE
+          </Button>
+        <View
+          style={styles.timeWrap}
+        >
+          <TextInput
+            onChangeText={async gameTime => {
+              if (isNaN(parseInt(gameTime))) {
+                alert("秒数を入力してください。")
+                return
+              }
+              await firebase.database().ref('rooms/' + roomName ).update({game_time: parseInt(gameTime)})
+            }}
+            value={this.state.room && this.state.room.game_time && this.state.room.game_time.toString() || ""}
+            placeholder={'time'}
+          />
+        </View>
         <FlexBox
           alignItems="center"
           justifyContent="flex-start"
@@ -95,69 +121,22 @@ export default class extends React.Component {
           flexWrap
           style={styles.box}
         >
-          <View style={styles.slider}>
-            <Text>スライダー</Text>
-          </View>
-          <View
-            style={styles.timeWrap}
-          >
-            <TextInput
-              onChangeText={async gameTime => {
-                if (isNaN(parseInt(gameTime))) {
-                  alert("秒数を入力してください。")
-                  return
-                }
-                await firebase.database().ref('rooms/' + roomName ).update({game_time: parseInt(gameTime)})
-              }}
-              value={this.state.room && this.state.room.game_time && this.state.room.game_time.toString() || ""}
-              placeholder={'time'}
-            />
-          </View>
-          <FlexBox
-            alignItems="center"
-            justifyContent="flex-start"
-            flexDirection="column"
-            flexWrap
-            style={styles.body}
-          >
-            <Heading size="xsmall" align="center">member</Heading>
-            {/*<Button*/}
-            {/*size="small"*/}
-            {/*type="info"*/}
-            {/*onPress={() => Actions.rulePage()}*/}
-            {/*outline*/}
-            {/*style={styles.info}*/}
-            {/*>*/}
-            {/*?*/}
-            {/*</Button>*/}
-            <ListGroup style={styles.list}>
-              {this.state.room && this.state.room.users.map(user =>
-                <ListGroupItem
-                  key={user.id}
-                  badgeText={user.is_ready ? "準備完了!" : "準備中"}
-                  style={{
-                    margin: 8,
-                    minHeight: 50,
-                    ...styles.label
-                  }}
-                >
-                  {user.name}
-                </ListGroupItem>
-              )}
-            </ListGroup>
-          </FlexBox>
-          <Button
-            type={(this.state.room && this.state.room.users.find(x => x.id == myId) || {} ).is_ready ? "primary" : "success"}
-            onPress={async () => {
-              await firebase.database().ref('rooms/' + roomName + "/users/" + myId ).update({
-                is_ready: !( (this.state.room && this.state.room.users.find(x => x.id == myId) || {} ).is_ready )
-              })
-            }}
-            size="large"
-            style={styles.ready}
-          >
-            Ready
-          </Button>
+          <Heading size="xsmall" align="center">member</Heading>
+          <ListGroup style={styles.list}>
+            {this.state.room && this.state.room.users.map(user =>
+              <ListGroupItem
+                key={user.id}
+                badgeText={user.is_ready ? "準備完了!" : "準備中"}
+                style={{
+                  margin: 8,
+                  minHeight: 50,
+                  ...styles.label
+                }}
+              >
+                {user.name}
+              </ListGroupItem>
+            )}
+          </ListGroup>
         </FlexBox>
       </ImageBackground>
     );
