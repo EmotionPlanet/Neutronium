@@ -3,17 +3,18 @@ import { colors } from "config";
 export default {
   host: {},
   view: {
-    width: '75%',
+    width: '100%',
   },
   box: {
     width: '75%',
   },
   input: {
+    backgroundColor: '#fff',
     marginBottom: 40,
   },
   image: {
-    height: 60,
-    width: '100%',
+    position: 'relative',
+    minWidth: '100%',
   },
   submit: {
     width: '80%',

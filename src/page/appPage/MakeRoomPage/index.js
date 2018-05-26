@@ -2,6 +2,7 @@ import React from "react"
 import {Text, View, AlertIOS, AsyncStorage, Dimensions, ImageBackground} from "react-native"
 import { Actions } from "react-native-router-flux"
 import background from "Neutronium/assets/images/background.png"
+import appearance from "Neutronium/assets/images/appearance.png"
 import { Image, Button, Page, FlexBox, TextInput } from "Neutronium/src/components"
 import * as firebase from 'firebase';
 
@@ -43,7 +44,7 @@ export default class extends React.Component {
               <Image
                 size="xlarge"
                 rounded={false}
-                uri="http://placehold.jp/300x300.png?text=xlarge"
+                source={appearance}
                 style={styles.image}
               />
             </View>
