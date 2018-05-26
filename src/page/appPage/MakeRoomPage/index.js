@@ -68,6 +68,8 @@ export default class extends React.Component {
               if (room == null) {
                 alert("ルームが存在しません！");
 
+              } else if (room.is_start) {
+                alert("ゲーム中です。お待ちください。")
               } else {
                 const name = await AsyncStorage.getItem("name");
 
@@ -86,7 +88,7 @@ export default class extends React.Component {
             style={styles.submit}
             onPress={() => {
               AlertIOS.prompt(
-                'ルーム名',
+                "ルーム名",
                 null,
                 async newRoomName => {
                   const name = await AsyncStorage.getItem("name");
