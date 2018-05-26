@@ -35,7 +35,7 @@ export default ({
           width,
           height
         },
-        visible ? {opacity: 1} : {maxHeight: 0, opacity: 0}
+        visible ? {opacity: 1} : {maxHeight: 0, opacity: 0, paddingBottom: 0}
       ]}
     >
       <FlexBox
