@@ -8,6 +8,10 @@ import styles from "./styles"
 
 export default class extends React.Component {
 
+  componentDidMount() {
+    console.log(this.props)
+  }
+
   render() {
     return (
       <Page
@@ -27,7 +31,7 @@ export default class extends React.Component {
             <Button
               size="small" 
               type="info" 
-              onPress={() => undefined} 
+              onPress={() => Actions.rulePage()} 
               outline
             >
               ?
