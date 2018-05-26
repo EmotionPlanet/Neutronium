@@ -38,11 +38,6 @@ export default class extends React.Component {
               }))
             }
 
-            if (room.users.length >= 2 && room.users.every(x => x.is_ready)) {
-              await firebase.database().ref('rooms/' + roomName ).update({is_start: true})
-              Actions.gameScreenPage()
-            }
-
             this.setState({
               room
             })
