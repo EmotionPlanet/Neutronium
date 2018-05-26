@@ -43,7 +43,7 @@ import {
   RulePage,
   GameScreenPage,
   GameSetPage,
-  ResultPage
+  ResultPage,
 } from "Neutronium/src/page/appPage"
 
 import * as firebase from 'firebase';
