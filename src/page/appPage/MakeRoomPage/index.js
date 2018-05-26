@@ -63,6 +63,10 @@ export default class extends React.Component {
                 alert("ルームが存在しません！");
 
               } else {
+
+                await firebase.database().ref('rooms/' + this.state.roomName + "/users" ).push({
+                  name: name
+                })
                 Actions.roomPage({roomName: this.state.roomName})
               }
             }}
