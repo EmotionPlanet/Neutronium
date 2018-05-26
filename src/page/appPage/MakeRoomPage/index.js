@@ -56,6 +56,14 @@ export default class extends React.Component {
           >
             OK
           </Button>
+          <Button
+            type="primary"
+            size="large"
+            style={styles.submit}
+            onPress={undefined}
+          >
+            Stab
+          </Button>
         </View>
       </Page>
     );
