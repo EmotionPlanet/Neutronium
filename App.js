@@ -86,7 +86,10 @@ export default class extends React.Component {
       return null
 
     return (
-      <Router>
+      <Router
+        navigationBarStyle={{ backgroundColor: 'black' }}
+        titleStyle={{color: 'white'}}
+      >
         <Scene key="root">
           <Scene
             key="topPage"
