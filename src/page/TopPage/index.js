@@ -4,6 +4,7 @@ import { Actions } from "react-native-router-flux"
 import { Page, Button, Heading, Avatar, FlexBox, Switch, TextInput } from "Neutronium/src/components"
 import { ListGroup, ListGroupItem } from "Neutronium/src/components/listGroup"
 import avatarImage from "Neutronium/assets/images/avatar.jpg"
+import { AccelerometerApiPage } from "Neutronium/src/page/expoApiComponents"
 
 import styles from "./styles"
 
