@@ -29,7 +29,7 @@ export default class extends React.Component {
         {
           subscriber: async snapshot => {
             const val = snapshot.val()
-            
+
             const room = {
               ...val,
               users: Object.entries(val.users).map(([i, v]) => ({
@@ -66,7 +66,7 @@ export default class extends React.Component {
       } = this.props
 
       this.state.ref.off('value', this.state.subscriber)
-      
+
       await firebase
         .database()
         .ref('rooms/' + roomName + '/users/' + myId)
@@ -81,29 +81,19 @@ export default class extends React.Component {
     } = this.props
 
     return (
-      <Page
-        style={styles.host}
-        {...this.props}
+      <FlexBox
+        alignItems="center"
+        justifyContent="flex-start"
+        flexDirection="column"
+        flexWrap
+        style={styles.box}
       >
-        <View>
-
-          {/* 競技選択は書いてません */}
-          
-          <FlexBox
-            flexWrap
-            alignItems="center"
-            justifyContent="center"
-          >
-            <Heading size="xsmall" align="center">member</Heading>
-            <Button
-              size="small" 
-              type="info" 
-              onPress={() => Actions.rulePage()} 
-              outline
-            >
-              ?
-            </Button>
-          </FlexBox>
+        <View style={styles.slider}>
+          <Text>スライダー</Text>
+        </View>
+        <View
+          style={styles.timeWrap}
+        >
           <TextInput
             onChangeText={async gameTime => {
               if (isNaN(parseInt(gameTime))) {
@@ -113,30 +103,55 @@ export default class extends React.Component {
               await firebase.database().ref('rooms/' + roomName ).update({game_time: parseInt(gameTime)})
             }}
             value={this.state.room && this.state.room.game_time && this.state.room.game_time.toString() || ""}
+            placeholder={'time'}
           />
-          <ListGroup>
-            {this.state.room && this.state.room.users.map(user => 
+        </View>
+        <FlexBox
+          alignItems="center"
+          justifyContent="flex-start"
+          flexDirection="column"
+          flexWrap
+          style={styles.body}
+        >
+          <Heading size="xsmall" align="center">member</Heading>
+          {/*<Button*/}
+          {/*size="small"*/}
+          {/*type="info"*/}
+          {/*onPress={() => Actions.rulePage()}*/}
+          {/*outline*/}
+          {/*style={styles.info}*/}
+          {/*>*/}
+          {/*?*/}
+          {/*</Button>*/}
+          <ListGroup style={styles.list}>
+            {this.state.room && this.state.room.users.map(user =>
               <ListGroupItem
                 key={user.id}
                 badgeText={user.is_ready ? "準備完了!" : "準備中"}
+                style={{
+                  margin: 8,
+                  minHeight: 50,
+                  ...styles.label
+                }}
               >
                 {user.name}
               </ListGroupItem>
             )}
           </ListGroup>
-          <Button
-            type={(this.state.room && this.state.room.users.find(x => x.id == myId) || {} ).is_ready ? "primary" : "success"}
-            onPress={async () => {
-              await firebase.database().ref('rooms/' + roomName + "/users/" + myId ).update({
-                is_ready: !( (this.state.room && this.state.room.users.find(x => x.id == myId) || {} ).is_ready )
-              })
-            }}
-            size="large"
-          >
-            Ready
-          </Button>
-        </View>
-      </Page>
+        </FlexBox>
+        <Button
+          type={(this.state.room && this.state.room.users.find(x => x.id == myId) || {} ).is_ready ? "primary" : "success"}
+          onPress={async () => {
+            await firebase.database().ref('rooms/' + roomName + "/users/" + myId ).update({
+              is_ready: !( (this.state.room && this.state.room.users.find(x => x.id == myId) || {} ).is_ready )
+            })
+          }}
+          size="large"
+          style={styles.ready}
+        >
+          Ready
+        </Button>
+      </FlexBox>
     );
   }
 }
