@@ -205,13 +205,14 @@ export default class extends React.Component {
             component={VisionApiPage}
             title="vision-api-page"
           />
+          {/* app page */}
+          <Scene 
+            key="typePage"
+            component={TypePage}
+            title="type-page"
+          />
         </Scene>
-        {/* app page */}
-        <Scene 
-          key="typePage"
-          component={TypePage}
-          title="type-page"
-        />
+        
       </Router>
     );
   }
