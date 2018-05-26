@@ -63,11 +63,12 @@ export default class extends React.Component {
                 alert("ルームが存在しません！");
 
               } else {
+                const name = await AsyncStorage.getItem("name");
 
-                await firebase.database().ref('rooms/' + this.state.roomName + "/users" ).push({
+                const x = await firebase.database().ref('rooms/' + this.state.roomName + "/users" ).push({
                   name: name
                 })
-                Actions.roomPage({roomName: this.state.roomName})
+                Actions.roomPage({roomName: this.state.roomName, myId: x.key})
               }
             }}
           >
@@ -83,13 +84,11 @@ export default class extends React.Component {
                 null,
                 async newRoomName => {
                   const name = await AsyncStorage.getItem("name");
-                  const room = (
-                    await firebase.database().ref('rooms/' + newRoomName + "/users" ).push({
-                      name: name
-                    })
-                  );
+                  const room = await firebase.database().ref('rooms/' + newRoomName + "/users" ).push({
+                    name: name
+                  })
 
-                  Actions.roomPage({roomName: newRoomName})
+                  Actions.roomPage({roomName: newRoomName, myId: room.key})
                 }
               );
             }}
