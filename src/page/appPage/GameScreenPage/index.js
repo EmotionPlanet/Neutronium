@@ -1,7 +1,8 @@
 import React from "react"
-import { Text, View } from "react-native"
+import { Text, View, ImageBackground } from "react-native"
 import { Actions } from "react-native-router-flux"
 import { Page, FlexBox, Heading, Button, Image } from "Neutronium/src/components"
+import background from "Neutronium/assets/images/background.png"
 import * as firebase from 'firebase';
 
 import styles from "./styles"
@@ -71,8 +72,12 @@ export default class extends React.Component {
 
   render() {
     return (
-      <Page
-        style={styles.host}
+      <ImageBackground
+        source={background}
+        style={[
+          styles.host,
+          {width: "100%", height: "100%"}
+        ]}
         {...this.props}
       >
         <View>
@@ -95,7 +100,7 @@ export default class extends React.Component {
             (仮)GAMESETに遷移
           </Button>
         </View>
-      </Page>
+      </ImageBackground>
     );
   }
 }

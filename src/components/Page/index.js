@@ -1,5 +1,6 @@
 import React from "react";
-import { ScrollView } from "react-native";
+import { ScrollView, ImageBackground } from "react-native";
+import background from "Neutronium/assets/images/background.png"
 import { commons } from "./style"
 
 export default ({
@@ -14,5 +15,9 @@ export default ({
     ]}
     {...props}
   >
-    {children}
+    <ImageBackground
+      source={background}
+    >
+      {children}
+    </ImageBackground>
   </ScrollView>

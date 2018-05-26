@@ -1,5 +1,6 @@
 import React from "react"
-import { Text, View } from "react-native"
+import { Text, View, ImageBackground } from "react-native"
+import background from "Neutronium/assets/images/background.png"
 import { Actions } from "react-native-router-flux"
 import { Page, FlexBox, Heading, Button, TextInput } from "Neutronium/src/components"
 import { ListGroup, ListGroupItem } from "Neutronium/src/components/listGroup"
@@ -83,77 +84,82 @@ export default class extends React.Component {
     } = this.props
 
     return (
-      <FlexBox
-        alignItems="center"
-        justifyContent="flex-start"
-        flexDirection="column"
-        flexWrap
-        style={styles.box}
+      <ImageBackground
+        source={background}
+        style={{width: "100%", height: "100%"}}
       >
-        <View style={styles.slider}>
-          <Text>スライダー</Text>
-        </View>
-        <View
-          style={styles.timeWrap}
-        >
-          <TextInput
-            onChangeText={async gameTime => {
-              if (isNaN(parseInt(gameTime))) {
-                alert("秒数を入力してください。")
-                return
-              }
-              await firebase.database().ref('rooms/' + roomName ).update({game_time: parseInt(gameTime)})
-            }}
-            value={this.state.room && this.state.room.game_time && this.state.room.game_time.toString() || ""}
-            placeholder={'time'}
-          />
-        </View>
         <FlexBox
           alignItems="center"
           justifyContent="flex-start"
           flexDirection="column"
           flexWrap
-          style={styles.body}
+          style={styles.box}
         >
-          <Heading size="xsmall" align="center">member</Heading>
-          {/*<Button*/}
-          {/*size="small"*/}
-          {/*type="info"*/}
-          {/*onPress={() => Actions.rulePage()}*/}
-          {/*outline*/}
-          {/*style={styles.info}*/}
-          {/*>*/}
-          {/*?*/}
-          {/*</Button>*/}
-          <ListGroup style={styles.list}>
-            {this.state.room && this.state.room.users.map(user =>
-              <ListGroupItem
-                key={user.id}
-                badgeText={user.is_ready ? "準備完了!" : "準備中"}
-                style={{
-                  margin: 8,
-                  minHeight: 50,
-                  ...styles.label
-                }}
-              >
-                {user.name}
-              </ListGroupItem>
-            )}
-          </ListGroup>
+          <View style={styles.slider}>
+            <Text>スライダー</Text>
+          </View>
+          <View
+            style={styles.timeWrap}
+          >
+            <TextInput
+              onChangeText={async gameTime => {
+                if (isNaN(parseInt(gameTime))) {
+                  alert("秒数を入力してください。")
+                  return
+                }
+                await firebase.database().ref('rooms/' + roomName ).update({game_time: parseInt(gameTime)})
+              }}
+              value={this.state.room && this.state.room.game_time && this.state.room.game_time.toString() || ""}
+              placeholder={'time'}
+            />
+          </View>
+          <FlexBox
+            alignItems="center"
+            justifyContent="flex-start"
+            flexDirection="column"
+            flexWrap
+            style={styles.body}
+          >
+            <Heading size="xsmall" align="center">member</Heading>
+            {/*<Button*/}
+            {/*size="small"*/}
+            {/*type="info"*/}
+            {/*onPress={() => Actions.rulePage()}*/}
+            {/*outline*/}
+            {/*style={styles.info}*/}
+            {/*>*/}
+            {/*?*/}
+            {/*</Button>*/}
+            <ListGroup style={styles.list}>
+              {this.state.room && this.state.room.users.map(user =>
+                <ListGroupItem
+                  key={user.id}
+                  badgeText={user.is_ready ? "準備完了!" : "準備中"}
+                  style={{
+                    margin: 8,
+                    minHeight: 50,
+                    ...styles.label
+                  }}
+                >
+                  {user.name}
+                </ListGroupItem>
+              )}
+            </ListGroup>
+          </FlexBox>
+          <Button
+            type={(this.state.room && this.state.room.users.find(x => x.id == myId) || {} ).is_ready ? "primary" : "success"}
+            onPress={async () => {
+              await firebase.database().ref('rooms/' + roomName + "/users/" + myId ).update({
+                is_ready: !( (this.state.room && this.state.room.users.find(x => x.id == myId) || {} ).is_ready )
+              })
+            }}
+            size="large"
+            style={styles.ready}
+          >
+            Ready
+          </Button>
         </FlexBox>
-        <Button
-          type={(this.state.room && this.state.room.users.find(x => x.id == myId) || {} ).is_ready ? "primary" : "success"}
-          onPress={async () => {
-            await firebase.database().ref('rooms/' + roomName + "/users/" + myId ).update({
-              is_ready: !( (this.state.room && this.state.room.users.find(x => x.id == myId) || {} ).is_ready )
-            })
-          }}
-          size="large"
-          style={styles.ready}
-        >
-          Ready
-        </Button>
-      </FlexBox>
+      </ImageBackground>
     );
   }
 }
