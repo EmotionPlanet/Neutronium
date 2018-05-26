@@ -25,7 +25,7 @@ export default class extends React.Component {
 
           <Button
             type="primary"
-            onPress={() => undefined}
+            onPress={() => Actions.roomPage()}
             size="large"
           >
             Back
