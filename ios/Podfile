@@ -41,16 +41,16 @@ end
 
 #   pod 'Firebase/Core'
 
-#   # あとで必要に応じてコメントアウトを外す
-#   # pod 'Firebase/AdMob'
-#   # pod 'Firebase/Auth'
-#   # pod 'Firebase/Crash'
-#   # pod 'Firebase/Database'
-#   # pod 'Firebase/DynamicLinks'
-#   # pod 'Firebase/Performance'
-#   # pod 'Firebase/Firestore'
-#   # pod 'Firebase/Messaging'
-#   # pod 'Firebase/RemoteConfig'
-#   # pod 'Firebase/Storage'
+# #   # あとで必要に応じてコメントアウトを外す
+# #   # pod 'Firebase/AdMob'
+# #   # pod 'Firebase/Auth'
+# #   # pod 'Firebase/Crash'
+# #   # pod 'Firebase/Database'
+# #   # pod 'Firebase/DynamicLinks'
+# #   # pod 'Firebase/Performance'
+# #   # pod 'Firebase/Firestore'
+# #   # pod 'Firebase/Messaging'
+# #   # pod 'Firebase/RemoteConfig'
+# #   # pod 'Firebase/Storage'
 
 # end
