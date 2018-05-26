@@ -76,6 +76,11 @@ export default class extends React.Component {
                 const x = await firebase.database().ref('rooms/' + this.state.roomName + "/users" ).push({
                   name: name
                 })
+                firebase
+                  .database()
+                  .ref('rooms/' + this.state.roomName + "/users/" + x.key)
+                  .onDisconnect()
+                  .remove()
                 Actions.roomPage({roomName: this.state.roomName, myId: x.key})
               }
             }}
@@ -92,11 +97,17 @@ export default class extends React.Component {
                 null,
                 async newRoomName => {
                   const name = await AsyncStorage.getItem("name");
-                  const room = await firebase.database().ref('rooms/' + newRoomName + "/users" ).push({
+                  const snapshot = await firebase.database().ref('rooms/' + newRoomName + "/users" ).push({
                     name: name
                   })
 
-                  Actions.roomPage({roomName: newRoomName, myId: room.key})
+                  firebase
+                    .database()
+                    .ref('rooms/' + this.state.roomName + "/users/" + snapshot.key)
+                    .onDisconnect()
+                    .remove()
+
+                  Actions.roomPage({roomName: newRoomName, myId: snapshot.key})
                 }
               );
             }}
