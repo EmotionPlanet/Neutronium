@@ -1,5 +1,5 @@
 import React from "react"
-import { Text, View, Dimensions, TouchableOpacity } from "react-native"
+import { Text, View } from "react-native"
 import { Image, Button, Alert, Heading, Page, FlexBox } from "Neutronium/src/components"
 import { Accelerometer } from 'expo'
 

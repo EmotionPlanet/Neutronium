@@ -4,8 +4,25 @@ import { Actions } from "react-native-router-flux"
 import { Page, FlexBox, Heading, Button, Image } from "Neutronium/src/components"
 import background from "Neutronium/assets/images/background.png"
 import * as firebase from 'firebase';
+import { Accelerometer } from 'expo'
 
 import styles from "./styles"
+
+
+const round = (n) => {
+  if (!n) {
+    return 0;
+  }
+
+  return Math.floor(n * 100) / 100;
+}
+
+const calculationDistance = (prevData, nowData) => {
+  const x = Math.pow(prevData.x - nowData.x, 2);
+  const y = Math.pow(prevData.y - nowData.y, 2);
+  const z = Math.pow(prevData.z - nowData.z, 2);
+  return Math.sqrt(x+y+z);
+}
 
 export default class extends React.Component {
 
@@ -18,6 +35,7 @@ export default class extends React.Component {
       vibPattern2 : [100, 100, 100],
       vibPattern3 : [500, 500, 500],
       vibPattern4 : [1000, 1000, 1000],
+      distance: undefined,
     })
   }
 
@@ -28,6 +46,19 @@ export default class extends React.Component {
         myId,
         ...props
       } = this.props
+
+      if (this._subscription) {
+        this._unsubscribe();
+      } else {
+        this._subscribe();
+      }
+      (async () => {
+        this.setState({
+          distance: this.props.accelerometerData
+        })
+      })();
+
+      Accelerometer.setUpdateInterval(300);
 
       this.setState(
         {
@@ -45,16 +76,6 @@ export default class extends React.Component {
             {/* ゲームゾーン */}
             if (room.ball_holding_user == myId) {
               this._vibration();
-
-              const winAction = async () => {
-
-                const userIdList = room.users.map(x => x.id)
-                  .filter(x => x != myId)
-
-                await firebase.database().ref('rooms/' + roomName  ).update({
-                  ball_holding_user: userIdList[Math.floor(Math.random() * userIdList.length)].id
-                })
-              }
             }
 
             {/* ゲームゾーン */}
@@ -81,6 +102,8 @@ export default class extends React.Component {
         myId,
       } = this.props
 
+      this._unsubscribe();
+
       this.state.ref.off('value', this.state.subscriber)
 
       await firebase
@@ -93,6 +116,44 @@ export default class extends React.Component {
   _vibration(){
     Vibration.vibrate(this.state.vibPattern4, true);
   }
+
+  _subscribe = () => {
+    this._subscription = Accelerometer.addListener(accelerometerData => {
+      const {x:prevX, y:prevY, z:prevZ} = this.state.accelerometerData;
+      const {x, y, z} = accelerometerData;
+      
+      let count = this.state.count + 1;
+
+      const distanse = calculationDistance(this.state.prevAccelerometerData, this.state.accelerometerData);
+      const isDistanse = distanse > 1.5 ? true : false;
+
+      if (this.state.room) {
+        if (this.state.room.ball_holding_user == this.props.myId && isDistanse) {
+
+          const userIdList = room.users.map(x => x.id)
+            .filter(x => x != myId)
+
+          await firebase.database().ref('rooms/' + roomName  ).update({
+            ball_holding_user: userIdList[Math.floor(Math.random() * userIdList.length)].id
+          })
+        }
+
+      }
+
+      this.setState({
+        prevAccelerometerData: this.state.accelerometerData,
+        accelerometerData,
+        count,
+      });
+
+    });
+  }
+
+  _unsubscribe = () => {
+    this._subscription && this._subscription.remove();
+    this._subscription = null;
+  }
+
 
   render() {
     return (
