@@ -1,5 +1,5 @@
 import React from "react"
-import { Text, View } from "react-native"
+import { Text, View, AlertIOS, AsyncStorage } from "react-native"
 import { Actions } from "react-native-router-flux"
 import { Avatar, Button, Page, FlexBox, TextInput } from "Neutronium/src/components"
 import * as firebase from 'firebase';
@@ -50,7 +50,7 @@ export default class extends React.Component {
                 alert("ルームが存在しません！");
                 return
               } else {
-                Actions.roomPage(room)
+                Actions.roomPage({roomName: this.state.roomName})
               }
             }}
           >
@@ -60,7 +60,22 @@ export default class extends React.Component {
             type="primary"
             size="large"
             style={styles.submit}
-            onPress={undefined}
+            onPress={() => {
+              AlertIOS.prompt(
+                'ルーム名',
+                null,
+                async newRoomName => {
+                  const name = await AsyncStorage.getItem("name");
+                  const room = (
+                    await firebase.database().ref('rooms/' + newRoomName + "/users" ).push({
+                      user_name: name
+                    })
+                  )
+
+                  Actions.roomPage({roomName: newRoomName})
+                }
+              );
+            }}
           >
             Stab
           </Button>
