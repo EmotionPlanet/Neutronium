@@ -213,12 +213,13 @@ export default class extends React.Component {
             component={SelectPage}
             title="select-page"
           />
-          <Scene
+          <Scene 
             key="typePage"
             component={TypePage}
             title="type-page"
           />
         </Scene>
+        
       </Router>
     );
   }
