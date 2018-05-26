@@ -29,7 +29,7 @@ export default class extends React.Component {
 
       this.setState(
         {
-          subscriber: snapshot => {
+          subscriber: async snapshot => {
             const val = snapshot.val()
             
             const room = {
@@ -40,7 +40,10 @@ export default class extends React.Component {
               }))
             }
 
-            room.users.length >= 2 && room.users.every(x => x.is_ready) && Actions.gameScreenPage
+            if (room.users.length >= 2 && room.users.every(x => x.is_ready)) {
+              await firebase.database().ref('rooms/' + roomName ).update({is_start: true})
+              Actions.gameScreenPage()
+            }
 
             this.setState({
               room
