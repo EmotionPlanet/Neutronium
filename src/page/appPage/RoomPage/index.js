@@ -3,16 +3,55 @@ import { Text, View } from "react-native"
 import { Actions } from "react-native-router-flux"
 import { Page, FlexBox, Heading, Button } from "Neutronium/src/components"
 import { ListGroup, ListGroupItem } from "Neutronium/src/components/listGroup"
+import * as firebase from 'firebase';
 
 import styles from "./styles"
 
 export default class extends React.Component {
 
+  componentWillMount() {
+    this.setState({
+      room: undefined
+    })
+  }
+
   componentDidMount() {
-    console.log(this.props)
+    (async() => {
+      const {
+        roomName
+      } = this.props
+
+      await firebase.database().ref('rooms/' + roomName ).on('value', snapshot => {
+        const val = snapshot.val()
+        
+        this.setState({
+          room: {
+            ...val,
+            users: Object.entries(val.users).map(([i, v]) => ({
+              id: i,
+              ...v,
+            }))
+          }
+        })
+      });
+
+    })()
+  }
+
+  componentWillUnmount() {
+    (async() => {
+      
+      const {
+        roomName
+      } = this.props
+
+      await firebase.database().ref('rooms/' + roomName ).off()
+    })
   }
 
   render() {
+
+    console.log(this.state.room)
     return (
       <Page
         style={styles.host}
@@ -38,11 +77,13 @@ export default class extends React.Component {
             </Button>
           </FlexBox>
           <ListGroup>
-            <ListGroupItem>member 1</ListGroupItem>
-            <ListGroupItem>member 2</ListGroupItem>
-            <ListGroupItem>member 3</ListGroupItem>
-            <ListGroupItem>member 4</ListGroupItem>
-            <ListGroupItem>member 5</ListGroupItem>
+            {this.state.room && this.state.room.users.map(user => 
+              <ListGroupItem
+                key={user.id}
+              >
+                {user.name}
+              </ListGroupItem>
+            )}
           </ListGroup>
           <Button
             type="primary"

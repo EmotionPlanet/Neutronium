@@ -41,6 +41,7 @@ export default class extends React.Component {
             type="primary"
             size="large"
             style={styles.submit}
+            disabled={!this.state.roomName}
             onPress={async () => {
               const room = (
                 await firebase.database().ref('rooms/' + this.state.roomName).once('value')
@@ -68,7 +69,7 @@ export default class extends React.Component {
                   const name = await AsyncStorage.getItem("name");
                   const room = (
                     await firebase.database().ref('rooms/' + newRoomName + "/users" ).push({
-                      user_name: name
+                      name: name
                     })
                   )
 
