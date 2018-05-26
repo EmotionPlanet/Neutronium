@@ -1,7 +1,7 @@
 import React from "react"
 import { Text, View } from "react-native"
 import { Actions } from "react-native-router-flux"
-import { Page, FlexBox, Heading, Button } from "Neutronium/src/components"
+import { Page, FlexBox, Heading, Button, TextInput } from "Neutronium/src/components"
 import { ListGroup, ListGroupItem } from "Neutronium/src/components/listGroup"
 import * as firebase from 'firebase';
 
@@ -24,8 +24,6 @@ export default class extends React.Component {
         myId,
         ...props
       } = this.props
-
-      console.log(props)
 
       this.setState(
         {
@@ -106,6 +104,16 @@ export default class extends React.Component {
               ?
             </Button>
           </FlexBox>
+          <TextInput
+            onChangeText={async gameTime => {
+              if (isNaN(parseInt(gameTime))) {
+                alert("秒数を入力してください。")
+                return
+              }
+              await firebase.database().ref('rooms/' + roomName ).update({game_time: parseInt(gameTime)})
+            }}
+            value={this.state.room && this.state.room.game_time && this.state.room.game_time.toString() || ""}
+          />
           <ListGroup>
             {this.state.room && this.state.room.users.map(user => 
               <ListGroupItem
