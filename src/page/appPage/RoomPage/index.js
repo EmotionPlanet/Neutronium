@@ -22,21 +22,28 @@ export default class extends React.Component {
       const {
         roomName,
         myId,
+        ...props
       } = this.props
+
+      console.log(props)
 
       this.setState(
         {
           subscriber: snapshot => {
             const val = snapshot.val()
             
+            const room = {
+              ...val,
+              users: Object.entries(val.users).map(([i, v]) => ({
+                id: i,
+                ...v,
+              }))
+            }
+
+            room.users.length >= 2 && room.users.every(x => x.is_ready) && Actions.gameScreenPage
+
             this.setState({
-              room: {
-                ...val,
-                users: Object.entries(val.users).map(([i, v]) => ({
-                  id: i,
-                  ...v,
-                }))
-              },
+              room
             })
           },
           ref: firebase.database().ref('rooms/' + roomName )
