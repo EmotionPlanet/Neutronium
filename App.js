@@ -27,7 +27,8 @@ import {
   IconApiPage,
   ImagePickerApiPage,
   NotificationApiPage,
-  SpeechApiPage
+  SpeechApiPage,
+  AccelerometerApiPage,
 } from "Neutronium/src/page/expoApiComponents"
 
 import {
@@ -114,6 +115,11 @@ export default class extends React.Component {
             key="speechApiPage"
             component={SpeechApiPage}
             title="speech-api-page"
+          />
+          <Scene
+            key="accelerometerApiPage"
+            component={AccelerometerApiPage}
+            title="accelerometer-api-page"
           />
 
           {/* appPage */}
