@@ -96,18 +96,27 @@ export default class extends React.Component {
                 "ルーム名",
                 null,
                 async newRoomName => {
-                  const name = await AsyncStorage.getItem("name");
-                  const snapshot = await firebase.database().ref('rooms/' + newRoomName + "/users" ).push({
-                    name: name
-                  })
 
-                  firebase
-                    .database()
-                    .ref('rooms/' + this.state.roomName + "/users/" + snapshot.key)
-                    .onDisconnect()
-                    .remove()
+                  const room = (
+                    await firebase.database().ref('rooms/' + this.state.roomName).once('value')
+                  ).val();
 
-                  Actions.roomPage({roomName: newRoomName, myId: snapshot.key})
+                  if (room == null) {
+                    alert("ルームが存在しません！");
+
+                    const name = await AsyncStorage.getItem("name");
+                    const snapshot = await firebase.database().ref('rooms/' + newRoomName + "/users" ).push({
+                      name: name
+                    })
+
+                    firebase
+                      .database()
+                      .ref('rooms/' + this.state.roomName + "/users/" + snapshot.key)
+                      .onDisconnect()
+                      .remove()
+
+                    Actions.roomPage({roomName: newRoomName, myId: snapshot.key})
+                  }
                 }
               );
             }}

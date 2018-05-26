@@ -110,9 +110,9 @@ export default class extends React.Component {
                 alert("秒数を入力してください。")
                 return
               }
-              await firebase.database().ref('rooms/' + roomName ).update({game_time: gameTime})
+              await firebase.database().ref('rooms/' + roomName ).update({game_time: parseInt(gameTime)})
             }}
-            value={this.state.room && this.state.room.game_time || ""}
+            value={this.state.room && this.state.room.game_time && this.state.room.game_time.toString() || ""}
           />
           <ListGroup>
             {this.state.room && this.state.room.users.map(user => 
