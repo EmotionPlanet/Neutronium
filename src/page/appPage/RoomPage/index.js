@@ -70,7 +70,7 @@ export default class extends React.Component {
             <Button
               size="small" 
               type="info" 
-              onPress={() => undefined} 
+              onPress={() => Actions.rulePage()} 
               outline
             >
               ?
@@ -87,7 +87,7 @@ export default class extends React.Component {
           </ListGroup>
           <Button
             type="primary"
-            onPress={() => undefined}
+            onPress={() => Actions.gamescreenPage()}
             size="large"
           >
             Ready

@@ -1,7 +1,7 @@
 import React from "react"
 import { Text, View, AlertIOS, AsyncStorage } from "react-native"
 import { Actions } from "react-native-router-flux"
-import { Avatar, Button, Page, FlexBox, TextInput } from "Neutronium/src/components"
+import { Image, Button, Page, FlexBox, TextInput } from "Neutronium/src/components"
 import * as firebase from 'firebase';
 
 import styles from "./styles"
@@ -15,7 +15,10 @@ export default class extends React.Component {
 
   render() {
     return (
-      <Page
+      <FlexBox
+        alignItems="center"
+        justifyContent="center"
+        flexDirection="column"
         style={styles.host}
         {...this.props}
       >
@@ -23,19 +26,28 @@ export default class extends React.Component {
           alignItems="center"
           justifyContent="space-around"
         >
-          <View>
-            <Avatar
+          <View
+            style={styles.view}
+          >
+            <Image
               size="xlarge"
               rounded={false}
               uri="http://placehold.jp/300x300.png?text=xlarge"
+              style={styles.image}
             />
           </View>
         </FlexBox>
 
-        <View>
+        <FlexBox
+          alignItems="center"
+          justifyContent="center"
+          flexDirection="column"
+          style={styles.box}
+        >
           <TextInput
             type="primary"
             onChangeText={roomName => this.setState({roomName})}
+            style={styles.input}
           />
           <Button
             type="primary"
@@ -45,11 +57,11 @@ export default class extends React.Component {
             onPress={async () => {
               const room = (
                 await firebase.database().ref('rooms/' + this.state.roomName).once('value')
-              ).val()
+              ).val();
 
               if (room == null) {
                 alert("ルームが存在しません！");
-                return
+
               } else {
                 Actions.roomPage({roomName: this.state.roomName})
               }
@@ -71,7 +83,7 @@ export default class extends React.Component {
                     await firebase.database().ref('rooms/' + newRoomName + "/users" ).push({
                       name: name
                     })
-                  )
+                  );
 
                   Actions.roomPage({roomName: newRoomName})
                 }
@@ -80,8 +92,8 @@ export default class extends React.Component {
           >
             Stab
           </Button>
-        </View>
-      </Page>
+        </FlexBox>
+      </FlexBox>
     );
   }
 }
