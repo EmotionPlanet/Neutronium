@@ -10,7 +10,7 @@ export const commons = {
     overflow: "hidden",
     paddingLeft: 32,
     paddingRight: 32,
-    left: -pageStyleCommons.host.paddingLeft,
+    left: -pageStyleCommons.host.paddingLeft+16,
     top: -pageStyleCommons.host.paddingTop,
     paddingBottom: 64
   },
