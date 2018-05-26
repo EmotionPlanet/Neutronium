@@ -41,7 +41,8 @@ import {
   RoomPage,
   RulePage,
   GameScreenPage,
-  GameSetPage
+  GameSetPage,
+  ResultPage
 } from "Neutronium/src/page/appPage"
 
 import * as firebase from 'firebase';
@@ -155,6 +156,11 @@ export default class extends React.Component {
             key="gameSetPage"
             component={GameSetPage}
             title="game-set-page"
+          />
+          <Scene
+            key="resultPage"
+            component={ResultPage}
+            title="result-page"
           />
         </Scene>
         
