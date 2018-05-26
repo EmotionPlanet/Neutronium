@@ -34,6 +34,11 @@ import {
   VisionApiPage
 } from "Neutronium/src/page/googleCloudApiComponents"
 
+import {
+  SelectPage,
+  TypePage
+} from "Neutronium/src/page/appPage"
+
 import * as firebase from 'firebase';
 
 export default class extends React.Component {
@@ -200,6 +205,18 @@ export default class extends React.Component {
             key="googleCloudVisionApiPage"
             component={VisionApiPage}
             title="vision-api-page"
+          />
+
+          {/* appPage */}
+          <Scene
+            key="selectPage"
+            component={SelectPage}
+            title="select-page"
+          />
+          <Scene
+            key="typePage"
+            component={TypePage}
+            title="type-page"
           />
         </Scene>
       </Router>
