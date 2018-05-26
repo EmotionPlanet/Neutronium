@@ -102,7 +102,6 @@ export default class extends React.Component {
                   ).val();
 
                   if (room == null) {
-                    alert("ルームが存在しません！");
 
                     const name = await AsyncStorage.getItem("name");
                     const snapshot = await firebase.database().ref('rooms/' + newRoomName + "/users" ).push({

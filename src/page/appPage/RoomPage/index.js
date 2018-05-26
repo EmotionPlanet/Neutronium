@@ -38,6 +38,13 @@ export default class extends React.Component {
               }))
             }
 
+            if (room.is_start) {
+              Actions.gameScreenPage({
+                roomName,
+                myId,
+              })
+            }
+
             this.setState({
               room
             })

@@ -2,14 +2,72 @@ import React from "react"
 import { Text, View } from "react-native"
 import { Actions } from "react-native-router-flux"
 import { Page, FlexBox, Heading, Button, Image } from "Neutronium/src/components"
+import * as firebase from 'firebase';
 
 import styles from "./styles"
 
 export default class extends React.Component {
 
-  componentDidMount() {
-    console.log(this.props)
+  componentWillMount() {
+    this.setState({
+      subscriber: undefined,
+      ref: undefined,
+      room: undefined
+    })
   }
+
+  componentDidMount() {
+    (async() => {
+      const {
+        roomName,
+        myId,
+        ...props
+      } = this.props
+
+      this.setState(
+        {
+          subscriber: async snapshot => {
+            const val = snapshot.val()
+
+            const room = {
+              ...val,
+              users: Object.entries(val.users).map(([i, v]) => ({
+                id: i,
+                ...v,
+              }))
+            }
+            
+            this.setState({
+              room
+            })
+          },
+          ref: firebase.database().ref('rooms/' + roomName )
+
+        },
+        async () => {
+          await this.state.ref.on('value', this.state.subscriber);
+        }
+      )
+
+    })()
+  }
+
+  componentWillUnmount() {
+    (async() => {
+      const {
+        roomName,
+        myId,
+      } = this.props
+
+      this.state.ref.off('value', this.state.subscriber)
+
+      await firebase
+        .database()
+        .ref('rooms/' + roomName + '/users/' + myId)
+        .remove()
+    })()
+  }
+
 
   render() {
     return (
