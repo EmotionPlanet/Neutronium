@@ -34,6 +34,8 @@ import {
   VisionApiPage
 } from "Neutronium/src/page/googleCloudApiComponents"
 
+import * as firebase from 'firebase';
+
 export default class extends React.Component {
 
   componentWillMount() {
@@ -50,6 +52,16 @@ export default class extends React.Component {
         "Nunito-Bold"         : require("./assets/fonts/Nunito-Bold.ttf"),
         "Nunito-SemiBold"     : require("./assets/fonts/Nunito-SemiBold.ttf"),
       });
+
+      firebase.initializeApp({
+        apiKey: "AIzaSyBFZCCBBpqSZzC9VUzMVza7Mp5BSYF_LYU",
+        authDomain: "spajam-armageddon.firebaseapp.com",
+        databaseURL: "https://spajam-armageddon.firebaseio.com",
+        projectId: "spajam-armageddon",
+        storageBucket: "spajam-armageddon.appspot.com",
+        messagingSenderId: "916231197545"
+      });
+
       this.setState({
         fontLoaded: true
       })
