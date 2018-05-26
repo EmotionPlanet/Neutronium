@@ -1,5 +1,5 @@
 import React from "react"
-import { Text, View, AlertIOS, AsyncStorage } from "react-native"
+import {Text, View, AlertIOS, AsyncStorage, Dimensions} from "react-native"
 import { Actions } from "react-native-router-flux"
 import { Image, Button, Page, FlexBox, TextInput } from "Neutronium/src/components"
 import * as firebase from 'firebase';
@@ -9,17 +9,23 @@ import styles from "./styles"
 export default class extends React.Component {
   componentWillMount() {
     this.setState({
-      roomName: ""
+      roomName: "",
+      deviceWidth: Dimensions.get('window').width
     })
   }
 
   render() {
+    const { deviceWidth } = this.state;
+    
     return (
       <FlexBox
         alignItems="center"
         justifyContent="center"
         flexDirection="column"
-        style={styles.host}
+        style={{
+          width: deviceWidth,
+          ...styles.host
+        }}
         {...this.props}
       >
         <FlexBox

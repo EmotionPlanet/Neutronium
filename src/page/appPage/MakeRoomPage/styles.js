@@ -1,8 +1,7 @@
 import { colors } from "config";
 
 export default {
-  host: {
-  },
+  host: {},
   view: {
     width: '75%',
   },
