@@ -3,10 +3,6 @@ import { Platform, Text, View, StyleSheet } from 'react-native';
 import { Constants, Location, Permissions } from 'expo';
 
 export default class App extends Component {
-  state = {
-    location: null,
-    errorMessage: null,
-  };
 
   componentWillMount() {
     if (Platform.OS === 'android' && !Constants.isDevice) {
@@ -14,6 +10,11 @@ export default class App extends Component {
         errorMessage: 'Oops, this will not work on Sketch in an Android emulator. Try it on your device!',
       });
     } else {
+      this.setState({
+        count: 0,
+        location: null,
+        errorMessage: null,
+      });
       this._getLocationAsync();
     }
   }
@@ -26,8 +27,10 @@ export default class App extends Component {
       });
     }
 
+    let count = this.state.count + 1;
     let location = await Location.getCurrentPositionAsync({});
-    this.setState({ location });
+    this.setState({ location, count });
+    setTimeout(this._getLocationAsync, 1000);
   };
 
   render() {
@@ -45,6 +48,7 @@ export default class App extends Component {
       <View>
         <Text>latitude: {latitude}</Text>
         <Text>longitude: {longitude}</Text>
+        <Text>count: {this.state.count}</Text>
       </View>
     );
   }
