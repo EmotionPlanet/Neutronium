@@ -28,7 +28,7 @@ export default class extends React.Component {
 
         <View>
           <TextInput type="primary" />
-          <Button type="primary" size="large" style={styles.submit} onPress={() => undefined}>OK</Button>
+          <Button type="primary" size="large" style={styles.submit} onPress={() => Actions.roomPage()}>OK</Button>
         </View>
       </Page>
     );
