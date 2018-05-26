@@ -37,7 +37,6 @@ import {
 } from "Neutronium/src/page/googleCloudApiComponents"
 
 import {
-  TypePage,
   MakeRoomPage,
   RoomPage,
   RulePage,
@@ -132,11 +131,6 @@ export default class extends React.Component {
           />
 
           {/* appPage */}
-          <Scene 
-            key="typePage"
-            component={TypePage}
-            title="type-page"
-          />
           <Scene 
             key="makeroomPage"
             component={MakeRoomPage}
