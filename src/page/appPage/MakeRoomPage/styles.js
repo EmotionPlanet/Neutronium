@@ -9,6 +9,7 @@ export default {
   },
   box: {
     width: '75%',
+    marginBottom: '15%'
   },
   input: {
     backgroundColor: '#fff',
