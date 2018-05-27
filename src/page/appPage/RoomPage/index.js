@@ -121,11 +121,11 @@ export default class extends React.Component {
           >
             <TextInput
               onChangeText={async gameTime => {
-                if (isNaN(parseInt(gameTime))) {
+                if (gameTime !== "" && isNaN(parseInt(gameTime))) {
                   alert("秒数を入力してください。")
                   return
                 }
-                await firebase.database().ref('rooms/' + roomName ).update({game_time: parseInt(gameTime)})
+                await firebase.database().ref('rooms/' + roomName ).update({game_time: gameTime == "" ? 0 : parseInt(gameTime)})
               }}
               value={this.state.room && this.state.room.game_time && this.state.room.game_time.toString() || ""}
               placeholder={'time'}

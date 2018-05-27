@@ -123,7 +123,7 @@ export default class extends React.Component {
                         .remove()
 
                       firebase.database().ref('rooms/' + newRoomName ).update({
-                        game_time: 15
+                        game_time: 45
                       })
 
                       Actions.roomPage({
