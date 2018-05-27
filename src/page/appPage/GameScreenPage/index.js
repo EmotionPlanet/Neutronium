@@ -219,14 +219,24 @@ export default class extends React.Component {
         source={background}
         style={[
           styles.host,
-          {width: "100%", height: "100%", backgroundColor: "#fff500"}
+          {width: "100%", height: "100%", backgroundColor: "#fff500", position: "relative"}
         ]}
         {...this.props}
       >
-        <View>
+        <View
+          style={{
+            position: 'absolute',
+            bottom: "15%",
+            width: "100%"
+          }}
+        >
           
-          <Heading size="medium" align="center">北邑メンバー</Heading>
-
+          <Heading 
+            size="medium" 
+            align="center"
+          >          
+            {this.state.room ? (this.state.room.ball_holding_user && (this.state.room.users.find(x => x.id == this.state.room.ball_holding_user) || {} ).name) : ""}
+          </Heading>
         </View>
       </ImageBackground>
     );
