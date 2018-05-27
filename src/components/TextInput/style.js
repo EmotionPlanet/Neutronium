@@ -17,6 +17,7 @@ export const types = {
   host: {
     primary: {
       borderColor: "#000",
+      backgroundColor: "#fff"
     },
     secondary: {
       borderColor: colors.secondary[200],
@@ -42,7 +43,7 @@ export const types = {
   },
   focus: {
     primary: {
-      borderColor: colors.primary[300],
+      borderColor: "#555",
     },
     secondary: {
       borderColor: colors.secondary[300],

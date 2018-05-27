@@ -142,7 +142,7 @@ export const types = {
     }
   },
   underlayColor: {
-    primary  : colors.primary[400],
+    primary  : "#333",
     secondary: colors.secondary[400],
     success  : colors.success[400],
     danger   : colors.danger[400],

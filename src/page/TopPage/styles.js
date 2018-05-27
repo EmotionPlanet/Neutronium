@@ -6,9 +6,11 @@ export default {
     width: '75%',
   },
   box: {
-    width: '75%',
+    width: '80%',
+    marginLeft: '10%'
   },
   input: {
+    width: '100%',
     marginBottom: 40,
   },
   title: {

@@ -4,7 +4,7 @@ import { Actions } from "react-native-router-flux"
 import { Page, Button, Heading, Avatar, FlexBox, Switch, TextInput, Image } from "Neutronium/src/components"
 import { ListGroup, ListGroupItem } from "Neutronium/src/components/listGroup"
 import background from "Neutronium/assets/images/background.png"
-import avatarImage from "Neutronium/assets/images/avatar.jpg"
+import titleImage from "Neutronium/assets/images/title.png"
 import { AccelerometerApiPage } from "Neutronium/src/page/expoApiComponents"
 
 import styles from "./styles"
@@ -50,7 +50,9 @@ export default class extends React.Component {
         >
           <View style={styles.view}>
             <Image
-              source={avatarImage}
+              width="100%"
+              resizeMode="contain"
+              source={titleImage}
             />
           </View>
         </FlexBox>
