@@ -36,6 +36,8 @@ export default class extends React.Component {
       vibPattern3 : [500, 500, 500],
       vibPattern4 : [1000, 1000, 1000],
       distance: undefined,
+      prevAccelerometerData: {},
+      accelerometerData: {},
     })
   }
 
@@ -76,6 +78,8 @@ export default class extends React.Component {
             {/* ゲームゾーン */}
             if (room.ball_holding_user == myId) {
               this._vibration();
+            } else {
+              Vibration.cancel()
             }
 
             {/* ゲームゾーン */}
@@ -118,7 +122,12 @@ export default class extends React.Component {
   }
 
   _subscribe = () => {
-    this._subscription = Accelerometer.addListener(accelerometerData => {
+    const {
+      roomName,
+      myId,
+    } = this.props
+
+    this._subscription = Accelerometer.addListener(async accelerometerData => {
       const {x:prevX, y:prevY, z:prevZ} = this.state.accelerometerData;
       const {x, y, z} = accelerometerData;
       
@@ -128,13 +137,24 @@ export default class extends React.Component {
       const isDistanse = distanse > 1.5 ? true : false;
 
       if (this.state.room) {
-        if (this.state.room.ball_holding_user == this.props.myId && isDistanse) {
+
+
+        const room = {
+          ...this.state.room,
+          users: Object.entries(this.state.room.users || {}).map(([i, v]) => ({
+            id: i,
+            ...v,
+          }))
+        }
+
+        if (isDistanse) console.log("catch motion!!")
+        if (room.ball_holding_user == myId && isDistanse) {
 
           const userIdList = room.users.map(x => x.id)
             .filter(x => x != myId)
 
           await firebase.database().ref('rooms/' + roomName  ).update({
-            ball_holding_user: userIdList[Math.floor(Math.random() * userIdList.length)].id
+            ball_holding_user: userIdList[Math.floor(Math.random() * userIdList.length)]
           })
         }
 
