@@ -174,7 +174,13 @@ export default class extends React.Component {
               source={ruleBackground}
               style={{width: "100%", height: "100%"}}
             >
-              <Button style={{width: "100%", height: 50, backgroundColor: "#a0a0a0", bottom: 0 }} onPress={() => this.setState({modalRule: false})}>BACK</Button>
+            <FlexBox
+              alignItems="flex-end"
+              justifyContent="center"
+              style={styles.box}
+            >
+              <Button style={{width: "80%", height: 50, backgroundColor: "#a0a0a0", marginBottom: 30}} onPress={() => this.setState({modalRule: false})}>BACK</Button>
+              </FlexBox>
             </ImageBackground>
           </Modal>
       </ImageBackground>
