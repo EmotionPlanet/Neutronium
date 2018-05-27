@@ -91,52 +91,73 @@ export default class extends React.Component {
         <View style={styles.slider}>
           <Text>スライダー</Text>
         </View>
-        <Button
-          size="small"
-          type="info"
-          onPress={() => Actions.rulePage()}
-          outline
-          >
-          RULE
-          </Button>
-        <View
-          style={styles.timeWrap}
-        >
-          <TextInput
-            onChangeText={async gameTime => {
-              if (isNaN(parseInt(gameTime))) {
-                alert("秒数を入力してください。")
-                return
-              }
-              await firebase.database().ref('rooms/' + roomName ).update({game_time: parseInt(gameTime)})
-            }}
-            value={this.state.room && this.state.room.game_time && this.state.room.game_time.toString() || ""}
-            placeholder={'time'}
-          />
-        </View>
         <FlexBox
           alignItems="center"
           justifyContent="flex-start"
           flexDirection="column"
-          flexWrap
           style={styles.box}
         >
-          <Heading size="xsmall" align="center">member</Heading>
-          <ListGroup style={styles.list}>
-            {this.state.room && this.state.room.users.map(user =>
-              <ListGroupItem
-                key={user.id}
-                badgeText={user.is_ready ? "準備完了!" : "準備中"}
-                style={{
-                  margin: 8,
-                  minHeight: 50,
-                  ...styles.label
-                }}
-              >
-                {user.name}
-              </ListGroupItem>
-            )}
-          </ListGroup>
+          <Button
+            size="large"
+            type="primary"
+            onPress={() => Actions.rulePage()}
+            style={styles.rule}
+            >
+            RULE
+            </Button>
+          <View
+            style={styles.timeWrap}
+          >
+            <TextInput
+              onChangeText={async gameTime => {
+                if (isNaN(parseInt(gameTime))) {
+                  alert("秒数を入力してください。")
+                  return
+                }
+                await firebase.database().ref('rooms/' + roomName ).update({game_time: parseInt(gameTime)})
+              }}
+              value={this.state.room && this.state.room.game_time && this.state.room.game_time.toString() || ""}
+              placeholder={'time'}
+            />
+          </View>
+          <FlexBox
+            alignItems="center"
+            justifyContent="flex-start"
+            flexDirection="column"
+            flexWrap
+            style={styles.box}
+          >
+            <Heading
+              size="xlarge"
+              align="center"
+              style={{backgroundColor: '#000',}}
+            >
+              member
+            </Heading>
+            <ListGroup style={styles.list}>
+              {this.state.room && this.state.room.users.map(user =>
+                <ListGroupItem
+                  key={user.id}
+                  badgeText={user.is_ready ? "準備完了!" : "準備中"}
+                  style={{
+                    margin: 8,
+                    minHeight: 50,
+                    ...styles.label
+                  }}
+                >
+                  {user.name}
+                </ListGroupItem>
+              )}
+            </ListGroup>
+          </FlexBox>
+          <Button
+            size="large"
+            type="primary"
+            onPress={() => Actions.rulePage()}
+            style={styles.start}
+          >
+            GAME START
+          </Button>
         </FlexBox>
       </ImageBackground>
     );
