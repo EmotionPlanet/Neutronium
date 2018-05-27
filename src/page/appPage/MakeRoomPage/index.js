@@ -116,7 +116,7 @@ export default class extends React.Component {
 
                       firebase
                         .database()
-                        .ref('rooms/' + this.state.newRoomName + "/users/" + snapshot.key)
+                        .ref('rooms/' + newRoomName + "/users/" + snapshot.key)
                         .onDisconnect()
                         .remove()
 
