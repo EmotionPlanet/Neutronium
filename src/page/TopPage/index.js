@@ -77,7 +77,7 @@ export default class extends React.Component {
             onPress={async () => {
               if (this.state.name.length > 1) {
                 await AsyncStorage.setItem("name", this.state.name)
-                Actions.gameScreenPage()
+                Actions.makeroomPage()
               }
             }}
           >
