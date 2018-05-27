@@ -152,8 +152,12 @@ export default class extends React.Component {
           </FlexBox>
           <Button
             size="large"
-            type="primary"
-            onPress={() => Actions.rulePage()}
+            type={"primary"}
+            onPress={async () => {
+              await firebase.database().ref('rooms/' + roomName + "/users/" + myId ).update({
+                is_ready: !( (this.state.room && this.state.room.users.find(x => x.id == myId) || {} ).is_ready )
+              })
+            }}
             style={styles.start}
           >
             GAME START
