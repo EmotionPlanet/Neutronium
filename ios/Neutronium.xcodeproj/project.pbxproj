@@ -44,6 +44,7 @@
 		4F128306ACE04FBBB99A5374 /* Nunito-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E6F6688B9F0C42FF9661EBA7 /* Nunito-Regular.ttf */; };
 		D7F6FF14E09345DFA4B076B5 /* Nunito-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 25C916706EDF4A89BC466694 /* Nunito-SemiBold.ttf */; };
 		2CD9C69E72D54813B4588A59 /* libRNFirebase.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6156DC2E8944437397600494 /* libRNFirebase.a */; };
+		91F86C10825347CCAE013D5D /* AlfaSlabOne-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B76C42DC67D446C6BD563041 /* AlfaSlabOne-Regular.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -357,6 +358,7 @@
 		25C916706EDF4A89BC466694 /* Nunito-SemiBold.ttf */ = {isa = PBXFileReference; name = "Nunito-SemiBold.ttf"; path = "../assets/fonts/Nunito-SemiBold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		D7C0F9A32340405F8A4EA3A8 /* RNFirebase.xcodeproj */ = {isa = PBXFileReference; name = "RNFirebase.xcodeproj"; path = "../node_modules/react-native-firebase/ios/RNFirebase.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
 		6156DC2E8944437397600494 /* libRNFirebase.a */ = {isa = PBXFileReference; name = "libRNFirebase.a"; path = "libRNFirebase.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		B76C42DC67D446C6BD563041 /* AlfaSlabOne-Regular.ttf */ = {isa = PBXFileReference; name = "AlfaSlabOne-Regular.ttf"; path = "../assets/fonts/AlfaSlabOne-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -630,6 +632,7 @@
 				961603604C1B4411B940205A /* Nunito-Italic.ttf */,
 				E6F6688B9F0C42FF9661EBA7 /* Nunito-Regular.ttf */,
 				25C916706EDF4A89BC466694 /* Nunito-SemiBold.ttf */,
+				B76C42DC67D446C6BD563041 /* AlfaSlabOne-Regular.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -1087,6 +1090,7 @@
 				93565131658B4959851D14A4 /* Nunito-Italic.ttf in Resources */,
 				4F128306ACE04FBBB99A5374 /* Nunito-Regular.ttf in Resources */,
 				D7F6FF14E09345DFA4B076B5 /* Nunito-SemiBold.ttf in Resources */,
+				91F86C10825347CCAE013D5D /* AlfaSlabOne-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

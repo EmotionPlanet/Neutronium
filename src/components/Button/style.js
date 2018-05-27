@@ -13,7 +13,7 @@ export const commons = {
     opacity: 0.65
   },
   text: {
-    ...fonts.fontPrimarySemiBold,
+    ...fonts.AlfaSlabOneRegular,
     textAlign: "center",
     fontWeight: "400",
   }
