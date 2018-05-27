@@ -38,6 +38,7 @@ export default class extends React.Component {
       distance: undefined,
       prevAccelerometerData: {},
       accelerometerData: {},
+      hasFinishFunc: false
     })
   }
 
@@ -80,6 +81,25 @@ export default class extends React.Component {
               this._vibration();
             } else {
               Vibration.cancel()
+            }
+
+            if (room.finish_time && !this.state.hasFinishFunc) {
+              
+              setTimeout(
+                async () => {
+                  if (this.state.room.ball_holding_user == myId)
+                    await firebase.database().ref('rooms/' + roomName  ).update({
+                      loser: myId,
+                      finish_time: null,
+                      ball_holding_user: null,
+                      is_start: false
+                    })
+                },
+                Math.abs(+new Date() - +new Date(room.finish_time))
+              )
+              this.setState({
+                hasFinishFunc: true
+              })
             }
 
             {/* ゲームゾーン */}

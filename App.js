@@ -94,7 +94,7 @@ export default class extends React.Component {
           <Scene
             key="topPage"
             component={TopPage}
-            title="top-page"
+            title=" "
             // initial={true}
           />
 
@@ -102,7 +102,7 @@ export default class extends React.Component {
           <Scene
             key="cameraApiPage"
             component={CameraApiPage}
-            title="camera-api-page"
+            title=" "
           />
           <Scene
             key="iconApiPage"
@@ -112,64 +112,64 @@ export default class extends React.Component {
           <Scene
             key="imagePickerApiPage"
             component={ImagePickerApiPage}
-            title="image-picker-api-page"
+            title=" "
           />
           <Scene
             key="notificationApiPage"
             component={NotificationApiPage}
-            title="notification-api-page"
+            title=" "
           />
           <Scene
             key="speechApiPage"
             component={SpeechApiPage}
-            title="speech-api-page"
+            title=" "
           />
           <Scene
             key="accelerometerApiPage"
             component={AccelerometerApiPage}
-            title="accelerometer-api-page"
+            title="　"
           />
           <Scene
             key="locationApiPage"
             component={LocationApiPage}
-            title="location-api-page"
+            title="　"
           />
           <Scene
             key="magnetometerApiPage"
             component={MagnetometerApiPage}
-            title="magnetometer-api-page"
+            title="　"
           />
 
           {/* appPage */}
           <Scene 
             key="makeroomPage"
             component={MakeRoomPage}
-            title="make-room-page"
+            title="　"
           />
           <Scene
             key="roomPage"
             component={RoomPage}
-            title="room-page"
+            title="　"
           />
          <Scene
             key="rulePage"
             component={RulePage}
-            title="rule-page"
+            title="　"
           />
           <Scene
             key="gameScreenPage"
             component={GameScreenPage}
-            title="game-screen-page"
+            title="　"
           />
           <Scene
             key="gameSetPage"
             component={GameSetPage}
-            title="game-set-page"
+            title="　"
           />
           <Scene
             key="resultPage"
             component={ResultPage}
-            title="result-page"
+            title=" "
           />
         </Scene>
         
