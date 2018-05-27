@@ -63,6 +63,7 @@ export default class extends React.Component {
         "Nunito-Italic"       : require("./assets/fonts/Nunito-Italic.ttf"),
         "Nunito-Bold"         : require("./assets/fonts/Nunito-Bold.ttf"),
         "Nunito-SemiBold"     : require("./assets/fonts/Nunito-SemiBold.ttf"),
+        "AlfaSlabOne-Regular" : require("./assets/fonts/AlfaSlabOne-Regular.ttf")
       });
 
       firebase.initializeApp({
