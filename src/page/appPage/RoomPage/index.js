@@ -159,7 +159,7 @@ export default class extends React.Component {
                   badgeText={user.is_ready ? "準備完了!" : "準備中"}
                   style={{
                     margin: 8,
-                    minHeight: 46,
+                    minHeight: 50,
                     ...styles.label
                   }}
                 >
