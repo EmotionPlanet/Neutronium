@@ -1,7 +1,7 @@
 import React from "react"
 import { Text, View, ImageBackground, AppState, Image } from "react-native"
 import background from "Neutronium/assets/images/background.png"
-import bombgame from "Neutronium/assets/images/bombgame.png"
+import catchball from "Neutronium/assets/images/catchball.png"
 import ruleBackground from "Neutronium/assets/images/rule.png"
 import member from "Neutronium/assets/images/member.png"
 import { Actions } from "react-native-router-flux"
@@ -95,7 +95,7 @@ export default class extends React.Component {
       >
         <View style={styles.slider}>
           <Image
-            source={bombgame}
+            source={catchball}
             style={{
               width: '100%',
               resizeMode: 'contain'
@@ -194,7 +194,19 @@ export default class extends React.Component {
               justifyContent="center"
               style={styles.box}
             >
-              <Button style={{width: "80%", height: 50, backgroundColor: "#a0a0a0", marginBottom: 30}} onPress={() => this.setState({modalRule: false})}>BACK</Button>
+              <Button
+                size="large"
+                type={"primary"}
+                style={{
+                  width: "80%",
+                  height: 50,
+                  backgroundColor: "#FFF",
+                  marginBottom: 30,
+                }}
+                onPress={() => this.setState({modalRule: false})}
+              >
+                BACK
+              </Button>
               </FlexBox>
             </ImageBackground>
           </Modal>

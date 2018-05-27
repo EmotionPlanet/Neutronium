@@ -32,6 +32,9 @@ export default class extends React.Component {
               type="primary"
               onPress={() => Actions.roomPage()}
               size="large"
+              style={{
+                lineHeight: 10
+              }}
             >
               Back
             </Button>
