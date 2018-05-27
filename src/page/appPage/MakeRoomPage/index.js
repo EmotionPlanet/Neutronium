@@ -58,6 +58,7 @@ export default class extends React.Component {
           >
             <TextInput
               type="primary"
+              placeholder="ここに部屋の名前を入力！！"
               onChangeText={roomName => this.setState({roomName})}
               style={styles.input}
             />
