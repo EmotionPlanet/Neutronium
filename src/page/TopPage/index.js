@@ -66,7 +66,7 @@ export default class extends React.Component {
             type="primary"
             defaultValue={this.state.name}
             style={styles.input}
-            placeholder="ユーザー名"
+            placeholder="ここに名前を入力！！"
             onChangeText={name => this.setState({name})}
           />
           <Button

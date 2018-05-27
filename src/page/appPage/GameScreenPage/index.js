@@ -95,7 +95,7 @@ export default class extends React.Component {
                       is_start: false
                     })
                 },
-                Math.abs(+new Date() - +new Date(room.finish_time))
+                console.log(+new Date() - +new Date(room.finish_time)) ||  Math.abs(+new Date() - +new Date(room.finish_time))
               )
               this.setState({
                 hasFinishFunc: true
