@@ -28,7 +28,7 @@ export default class extends React.Component {
             align="center"
             style={styles.label}
           >
-            {room.users.find(x => x.id == room.loser).name}
+            {room ? ( room.users && (room.users.find(x => x.id == room.loser) || {} ).name ) : ""}
           </Heading>
           <Button
             type="primary" 
