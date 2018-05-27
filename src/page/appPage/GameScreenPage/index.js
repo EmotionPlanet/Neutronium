@@ -219,7 +219,7 @@ export default class extends React.Component {
         source={background}
         style={[
           styles.host,
-          {width: "100%", height: "100%"}
+          {width: "100%", height: "100%", backgroundColor: "#fff500"}
         ]}
         {...this.props}
       >

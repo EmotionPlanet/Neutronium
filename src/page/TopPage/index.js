@@ -36,7 +36,7 @@ export default class extends React.Component {
     return (
       <ImageBackground
         source={background}
-        style={{width: "100%", height: "100%"}}
+        style={{width: "100%", height: "100%", backgroundColor: "#fff500"}}
       >
         <FlexBox
           alignItems="center"
