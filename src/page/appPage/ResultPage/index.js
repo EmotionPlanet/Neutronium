@@ -34,7 +34,10 @@ export default class extends React.Component {
             type="primary" 
             japanese="ture"
             style={styles.submit}
-            onPress={() => Actions.roomPage()}
+            onPress={() => Actions.roomPage({
+              roomName: this.props.roomName,
+              myId: this.props.myId
+            })}
           >
             ROOMへ戻る
           </Button>

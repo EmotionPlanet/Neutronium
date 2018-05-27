@@ -102,7 +102,11 @@ export default class extends React.Component {
                   const f = () => {
                     console.log('debug')
                     if (this.state.room.loser) 
-                      Actions.resultPage({room: this.state.room})
+                      Actions.resultPage({
+                        room: this.state.room, 
+                        roomName,
+                        myId
+                      })
                     else 
                       setTimeout( f, 500 )
                   }
