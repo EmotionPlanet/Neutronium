@@ -1,6 +1,7 @@
 import React from "react"
 import { Text, View, ImageBackground } from "react-native"
 import background from "Neutronium/assets/images/background.png"
+import ruleBackground from "Neutronium/assets/images/rule.png"
 import { Actions } from "react-native-router-flux"
 import { Page, FlexBox, Heading, Button, TextInput } from "Neutronium/src/components"
 import { ListGroup, ListGroupItem } from "Neutronium/src/components/listGroup"
@@ -14,8 +15,10 @@ export default class extends React.Component {
     this.setState({
       subscriber: undefined,
       ref: undefined,
-      room: undefined
+      room: undefined,
+      modalRule: false,
     })
+    AppState.addEventListener('change', this._handleAppStateChange);
   }
 
   componentDidMount() {
@@ -100,7 +103,7 @@ export default class extends React.Component {
           <Button
             size="large"
             type="primary"
-            onPress={() => Actions.rulePage()}
+            onPress={() => this.setState({modalRule: !this.state.modalRule})}
             style={styles.rule}
             >
             RULE
@@ -162,6 +165,17 @@ export default class extends React.Component {
           >
             GAME START
           </Button>
+          <Modal
+            visible={this.state.modalRule}
+            type="none"
+          >
+            <ImageBackground
+              source={ruleBackground}
+              style={{width: "100%", height: "100%"}}
+            >
+              <Button style={{width: "100%", height: 50, backgroundColor: "#a0a0a0"}} onPress={() => this.setState({modalRule: false})}>BACK</Button>
+            </ImageBackground>
+          </Modal>
         </FlexBox>
       </ImageBackground>
     );
