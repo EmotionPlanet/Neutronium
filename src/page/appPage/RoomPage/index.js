@@ -1,9 +1,9 @@
 import React from "react"
-import { Text, View, ImageBackground } from "react-native"
+import { Text, View, ImageBackground, AppState } from "react-native"
 import background from "Neutronium/assets/images/background.png"
 import ruleBackground from "Neutronium/assets/images/rule.png"
 import { Actions } from "react-native-router-flux"
-import { Page, FlexBox, Heading, Button, TextInput } from "Neutronium/src/components"
+import { Page, FlexBox, Heading, Button, TextInput, Modal } from "Neutronium/src/components"
 import { ListGroup, ListGroupItem } from "Neutronium/src/components/listGroup"
 import * as firebase from 'firebase';
 
@@ -165,18 +165,18 @@ export default class extends React.Component {
           >
             GAME START
           </Button>
-          <Modal
+        </FlexBox>
+        <Modal
             visible={this.state.modalRule}
             type="none"
-          >
+          > 
             <ImageBackground
               source={ruleBackground}
               style={{width: "100%", height: "100%"}}
             >
-              <Button style={{width: "100%", height: 50, backgroundColor: "#a0a0a0"}} onPress={() => this.setState({modalRule: false})}>BACK</Button>
+              <Button style={{width: "100%", height: 50, backgroundColor: "#a0a0a0", bottom: 0 }} onPress={() => this.setState({modalRule: false})}>BACK</Button>
             </ImageBackground>
           </Modal>
-        </FlexBox>
       </ImageBackground>
     );
   }
