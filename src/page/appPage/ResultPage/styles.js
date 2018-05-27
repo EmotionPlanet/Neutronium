@@ -8,11 +8,13 @@ export default {
   box: {
     width: '75%',
   },
-  image: {
-    height: 120,
-    width: '100%',
-  },
   submit: {
+    position: 'relative',
     width: '80%',
+  },
+  label: {
+    position:'relative',
+    marginTop: 180,
+    marginBottom: 70,
   }
 };
