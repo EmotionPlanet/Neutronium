@@ -3,6 +3,7 @@ import { Text, View, ImageBackground, AppState, Image } from "react-native"
 import background from "Neutronium/assets/images/background.png"
 import bombgame from "Neutronium/assets/images/bombgame.png"
 import ruleBackground from "Neutronium/assets/images/rule.png"
+import member from "Neutronium/assets/images/member.png"
 import { Actions } from "react-native-router-flux"
 import { Page, FlexBox, Heading, Button, TextInput, Modal } from "Neutronium/src/components"
 import { ListGroup, ListGroupItem } from "Neutronium/src/components/listGroup"
@@ -137,12 +138,20 @@ export default class extends React.Component {
             flexWrap
             style={styles.box}
           >
-            <Heading
-              size="xlarge"
-              align="center"
+            <View
+              style={{
+                width: '60%',
+                marginTop: -10
+              }}
             >
-              member
-            </Heading>
+              <Image
+                source={member}
+                resizeMode='contain'
+                style={{
+                  width: '100%',
+                }}
+              />
+            </View>
             <ListGroup style={styles.list}>
               {this.state.room && this.state.room.users.map(user =>
                 <ListGroupItem
