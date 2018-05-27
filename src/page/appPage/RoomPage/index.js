@@ -1,6 +1,7 @@
 import React from "react"
-import { Text, View, ImageBackground, AppState } from "react-native"
+import { Text, View, ImageBackground, AppState, Image } from "react-native"
 import background from "Neutronium/assets/images/background.png"
+import bombgame from "Neutronium/assets/images/bombgame.png"
 import ruleBackground from "Neutronium/assets/images/rule.png"
 import { Actions } from "react-native-router-flux"
 import { Page, FlexBox, Heading, Button, TextInput, Modal } from "Neutronium/src/components"
@@ -92,7 +93,13 @@ export default class extends React.Component {
         style={{width: "100%", height: "100%"}}
       >
         <View style={styles.slider}>
-          <Text>スライダー</Text>
+          <Image
+            source={bombgame}
+            style={{
+              width: '100%',
+              resizeMode: 'contain'
+            }}
+          />
         </View>
         <FlexBox
           alignItems="center"
@@ -133,7 +140,6 @@ export default class extends React.Component {
             <Heading
               size="xlarge"
               align="center"
-              style={{backgroundColor: '#000',}}
             >
               member
             </Heading>
@@ -144,7 +150,7 @@ export default class extends React.Component {
                   badgeText={user.is_ready ? "準備完了!" : "準備中"}
                   style={{
                     margin: 8,
-                    minHeight: 50,
+                    minHeight: 46,
                     ...styles.label
                   }}
                 >

@@ -30,9 +30,8 @@ export default {
   slider: {
     height: 110,
     width: '100%',
-    borderWidth: 1,
     marginTop: 30,
-    marginBottom: 5,
+    marginBottom: -10,
   },
   timeWrap: {
     width: '60%',
