@@ -4,8 +4,6 @@ export default {
   host: {},
   box: {
     width: '100%',
-    marginTop: 30,
-    marginBottom: 30,
   },
   head: {
     width: '100%',
@@ -20,9 +18,12 @@ export default {
     width: 30,
     height: 30,
   },
+  rule: {
+    width: '60%',
+  },
   list: {
     flex: 1,
-    width: '100%',
+    width: '80%',
     borderWidth: 0,
   },
   view: {},
@@ -30,16 +31,18 @@ export default {
     height: 110,
     width: '100%',
     borderWidth: 1,
-    marginBottom: 10
+    marginTop: 30,
+    marginBottom: 5,
   },
   timeWrap: {
-    width: '50%',
-  },
-  label: {
-
+    width: '60%',
   },
   ready: {
     width: '60%',
     borderRadius: 30
+  },
+  start: {
+    width: '70%',
+    marginBottom: 30,
   }
 };
