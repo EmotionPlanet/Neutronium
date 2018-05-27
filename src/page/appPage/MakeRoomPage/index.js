@@ -83,6 +83,7 @@ export default class extends React.Component {
                   const x = await firebase.database().ref('rooms/' + this.state.roomName + "/users" ).push({
                     name: name
                   })
+
                   firebase
                     .database()
                     .ref('rooms/' + this.state.roomName + "/users/" + x.key)
@@ -121,7 +122,14 @@ export default class extends React.Component {
                         .onDisconnect()
                         .remove()
 
-                      Actions.roomPage({roomName: newRoomName, myId: snapshot.key})
+                      firebase.database().ref('rooms/' + newRoomName ).update({
+                        game_time: 15
+                      })
+
+                      Actions.roomPage({
+                        roomName: newRoomName,
+                        myId: snapshot.key
+                      })
                     } else {
                       alert("すでに同じ名前のルームが存在します。")
                     }

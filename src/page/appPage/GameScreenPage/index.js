@@ -55,11 +55,13 @@ export default class extends React.Component {
       } else {
         this._subscribe();
       }
-      (async () => {
-        this.setState({
-          distance: this.props.accelerometerData
-        })
-      })();
+      this.setState({
+        distance: this.props.accelerometerData
+      })
+
+      await firebase.database().ref('rooms/' + roomName + "/users/" + myId ).update({
+        is_ready: false
+      })
 
       Accelerometer.setUpdateInterval(300);
 
@@ -87,13 +89,24 @@ export default class extends React.Component {
               
               setTimeout(
                 async () => {
-                  if (this.state.room.ball_holding_user == myId)
+                  Vibration.cancel()
+                  if (this.state.room.ball_holding_user == myId) {
                     await firebase.database().ref('rooms/' + roomName  ).update({
                       loser: myId,
                       finish_time: null,
                       ball_holding_user: null,
                       is_start: false
                     })
+                  }
+ 
+                  const f = () => {
+                    console.log('debug')
+                    if (this.state.room.loser) 
+                      Actions.resultPage({room: this.state.room})
+                    else 
+                      setTimeout( f, 500 )
+                  }
+                  f()
                 },
                 console.log(+new Date() - +new Date(room.finish_time)) ||  Math.abs(+new Date() - +new Date(room.finish_time))
               )
@@ -125,6 +138,7 @@ export default class extends React.Component {
         roomName,
         myId,
       } = this.props
+      Vibration.cancel()
 
       this._unsubscribe();
 

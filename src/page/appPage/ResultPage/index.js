@@ -3,12 +3,16 @@ import { Text, View, ImageBackground } from "react-native"
 import background from "Neutronium/assets/images/background.png"
 import { Actions } from "react-native-router-flux"
 import { FlexBox, Button, Image, Heading } from "Neutronium/src/components"
+import * as firebase from 'firebase';
 
 import styles from "./styles"
 
 export default class extends React.Component {
 
+
   render() {
+
+    const room = this.props.room
     return (
       <ImageBackground
         source={background}
@@ -36,7 +40,7 @@ export default class extends React.Component {
             justifyContent="center"
             flexDirection="column"
           >
-            <Heading size="medium" align="center">member</Heading>
+            <Heading size="medium" align="center">{room.users.find(x => x.id == room.loser).name}</Heading>
           </FlexBox>
           <FlexBox
             alignItems="center"
@@ -48,7 +52,7 @@ export default class extends React.Component {
               type="primary" 
               japanese="ture"
               style={styles.submit}
-              onPress={() => Actions.roomPage()}
+              onPress={() => Actions.roomPage}
             >
               ROOMへ戻る
             </Button>

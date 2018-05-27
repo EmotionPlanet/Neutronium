@@ -33,7 +33,7 @@ export default class extends React.Component {
 
             const room = {
               ...val,
-              users: Object.entries(val.users).map(([i, v]) => ({
+              users: Object.entries(val.users || {}).map(([i, v]) => ({
                 id: i,
                 ...v,
               }))
